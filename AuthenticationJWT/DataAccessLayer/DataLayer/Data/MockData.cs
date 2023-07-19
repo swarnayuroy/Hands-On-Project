@@ -21,7 +21,14 @@ namespace DataAccessLayer.DataLayer.Data
                 Id = Guid.NewGuid(),
                 Name="Jane Doe",
                 Email="doe.jane@gmail.com",
-                Password = "TestJane@1321"
+                Password = "TestJane@321"
+            },
+            new User
+            {
+                Id = Guid.NewGuid(),
+                Name="Jack Dawson",
+                Email="dawson.jack88@gmail.com",
+                Password = "TestJack@1986"
             }
         };
     }
