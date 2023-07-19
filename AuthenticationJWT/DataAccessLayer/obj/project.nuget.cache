@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "EwjgHv1i1fAUhwKjmFY0o4dMb3FkYy/tl2j3rA1rUVgE11f95G4e3vmXmK+iZKGhlD9+36MwLrSD992fT9Fu2Q==",
+  "success": true,
+  "projectFilePath": "F:\\Project\\MyProject\\AuthenticationJWT\\DataAccessLayer\\DataAccessLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\swarn\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\swarn\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
