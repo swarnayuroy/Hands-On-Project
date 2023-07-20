@@ -10,7 +10,7 @@ namespace DataAccessLayer.DataLayer
 {
     public class DataAccessDomain : IDataLayer
     {
-        public bool RegisteredUser(User user)
+        public bool RegisterUser(User user)
         {
             try
             {

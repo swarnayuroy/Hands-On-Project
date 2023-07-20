@@ -45,7 +45,7 @@ namespace ServiceLayer.ServiceDomain
             try
             {
                 User user = _map.GetUserEntity(userDTO);
-                if (_dataLayer.RegisteredUser(user))
+                if (_dataLayer.RegisterUser(user))
                 {
                     return true;
                 }

@@ -8,6 +8,6 @@ namespace DataAccessLayer.DataLayerInterface
     public interface IDataLayer
     {
         bool IsValidCredential(User user);
-        bool RegisteredUser(User user);
+        bool RegisterUser(User user);
     }
 }
