@@ -39,6 +39,23 @@ namespace ServiceLayer.ServiceDomain
             }
             return false;
         }
+
+        public bool RegisterNewUser(UserDTO userDTO)
+        {
+            try
+            {
+                User user = _map.GetUserEntity(userDTO);
+                if (_dataLayer.RegisteredUser(user))
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return false;
+        }
         #endregion
     }
 }

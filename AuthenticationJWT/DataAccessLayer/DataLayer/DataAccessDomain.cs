@@ -10,6 +10,20 @@ namespace DataAccessLayer.DataLayer
 {
     public class DataAccessDomain : IDataLayer
     {
+        public bool RegisteredUser(User user)
+        {
+            try
+            {
+                user.Id = Guid.NewGuid();
+                MockData.userList.Add(user);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
         public bool IsValidCredential(User user)
         {
             var anyUser = 0;

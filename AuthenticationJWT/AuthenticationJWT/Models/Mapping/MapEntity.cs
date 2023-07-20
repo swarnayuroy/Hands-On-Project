@@ -9,7 +9,7 @@ namespace AuthenticationJWT.Models.Mapping
 {
     public class MapEntity
     {
-        public User GetDataFromCredential(LoginDetails credential)
+        public User GetUserCredential(LoginDetails credential)
         {
             Mapper.CreateMap<LoginDetails, User>();
             User user = Mapper.Map<LoginDetails, User>(credential);

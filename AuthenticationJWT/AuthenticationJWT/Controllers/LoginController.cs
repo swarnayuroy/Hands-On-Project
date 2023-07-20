@@ -52,7 +52,7 @@ namespace AuthenticationJWT.Controllers
                     return View("SignIn", credential);
                 }
                 _map = new MapEntity();
-                User usrCred = _map.GetDataFromCredential(credential.Login);
+                User usrCred = _map.GetUserCredential(credential.Login);
                 UserDTO user = _map.GetUserDTO(usrCred);
 
                 bool isValid = _service.ConfirmValidCredential(user);
@@ -83,14 +83,27 @@ namespace AuthenticationJWT.Controllers
                 if (!ModelState.IsValid)
                 {
                     return View("SignIn", newUser);
+                }                
+                _map = new MapEntity();
+                UserDTO user = _map.GetUserDTO(newUser.Register);
+
+                bool isRegistered = _service.RegisterNewUser(user);
+                if (isRegistered)
+                {
+                    ModelState.Clear();
+                    return View("SignIn");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _logger.Error(ex.Message.ToString());
+                ModelState.Clear();
+                ViewBag.Error = $"We encountered some problem. Please try again later.";
+                return View("SignIn");
             }
-            return View();
+            ModelState.Clear();
+            ViewBag.Error = $"Registration failed! Please try again later.";            
+            return View("SignIn");
         }
         #endregion
     }

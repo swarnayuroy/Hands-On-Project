@@ -35,7 +35,7 @@
                 </script>
             }
             <header>Login</header>
-            <form method="post" asp-controller="Login" asp-action="SignIn" class="sign-in-form">
+            <form action="/Login/SignIn" method="post" class="sign-in-form">
                 @Html.ValidationMessageFor(x => x.Login.Email)
                 @Html.TextBoxFor(x => x.Login.Email, new { placeholder = Html.DisplayNameFor(x => x.Login.Email), autocomplete = "off" })
 
@@ -54,7 +54,7 @@
         </div>
         <div class="registration-form">
             <header>SignUp</header>
-            <form method="post" asp-controller="Login" asp-action="Register" class="sign-up-form">
+            <form action="/Login/Register" method="post" class="sign-up-form">
                 @Html.ValidationMessageFor(x => x.Register.Name)
                 @Html.TextBoxFor(x => x.Register.Name, new { placeholder = Html.DisplayNameFor(x => x.Register.Name), autocomplete = "off" })
 
