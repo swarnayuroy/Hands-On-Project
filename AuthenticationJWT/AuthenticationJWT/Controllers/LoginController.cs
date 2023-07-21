@@ -51,11 +51,13 @@ namespace AuthenticationJWT.Controllers
                 {
                     return View("SignIn", credential);
                 }
+                
+                string usrName = $"";
                 _map = new MapEntity();
                 User usrCred = _map.GetUserCredential(credential.Login);
                 UserDTO user = _map.GetUserDTO(usrCred);
 
-                bool isValid = _service.ConfirmValidCredential(user);
+                bool isValid = _service.ConfirmValidCredential(user, out usrName);
                 if (isValid)
                 {
                     return RedirectToAction("Index", "Home");

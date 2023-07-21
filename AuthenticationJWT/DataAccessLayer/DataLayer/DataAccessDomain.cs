@@ -24,14 +24,16 @@ namespace DataAccessLayer.DataLayer
             return true;
         }
 
-        public bool IsValidCredential(User user)
+        public bool IsValidCredential(User user, out string usrName)
         {
-            var anyUser = 0;
+            usrName = $"";
+            User userDetail = null;
             try
             {
-                anyUser = MockData.userList.Where(usr => usr.Email == user.Email && usr.Password == user.Password).Count();
-                if (anyUser == 1)
+                userDetail = MockData.userList.Where(usr => usr.Email == user.Email && usr.Password == user.Password).FirstOrDefault<User>();
+                if (userDetail != null)
                 {
+                    usrName = userDetail.Name;
                     return true;
                 }                
             }

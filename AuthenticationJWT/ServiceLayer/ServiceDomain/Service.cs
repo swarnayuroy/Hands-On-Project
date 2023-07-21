@@ -23,12 +23,12 @@ namespace ServiceLayer.ServiceDomain
         #endregion
 
         #region Services
-        public bool ConfirmValidCredential(UserDTO userDTO)
+        public bool ConfirmValidCredential(UserDTO userDTO, out string usrName)
         {
             try
             {
                 User user = _map.GetUserEntity(userDTO);
-                if (_dataLayer.IsValidCredential(user))
+                if (_dataLayer.IsValidCredential(user, out usrName))
                 {
                     return true;
                 }
