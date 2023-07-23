@@ -99,7 +99,6 @@ F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\Microsoft.IdentityM
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\Microsoft.IdentityModel.Logging.dll
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\Microsoft.IdentityModel.Tokens.dll
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Buffers.dll
-F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.IdentityModel.Tokens.Jwt.dll
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Memory.dll
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Numerics.Vectors.dll
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Text.Encodings.Web.dll
@@ -111,7 +110,6 @@ F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\Microsoft.IdentityM
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\Microsoft.IdentityModel.Logging.xml
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\Microsoft.IdentityModel.Tokens.xml
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Buffers.xml
-F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.IdentityModel.Tokens.Jwt.xml
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Memory.xml
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Numerics.Vectors.xml
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Text.Encodings.Web.xml
