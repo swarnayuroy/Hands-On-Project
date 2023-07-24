@@ -5,6 +5,7 @@ using System.Text;
 
 namespace DataAccessLayer.DataLayer.Data
 {
+    //This class will be removed once API is set in this project
     public class MockData
     {
         public static List<User> userList = new List<User>()

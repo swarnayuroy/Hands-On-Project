@@ -8,11 +8,13 @@ namespace ServiceLayer.StartUp
 {
     public class Config
     {
-        private readonly IDataLayer dataLayerConfig;
+        private readonly IDataLayer _dataLayerConfig;
         public Config()
         {
-            dataLayerConfig = new DataAccessDomain();
+            _dataLayerConfig = new DataAccessDomain();            
         }
-        public IDataLayer DataLayerConfig { get { return dataLayerConfig; } }
+        public IDataLayer DataLayerService { 
+            get { return _dataLayerConfig; }
+        }
     }
 }

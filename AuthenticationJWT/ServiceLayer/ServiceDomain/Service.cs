@@ -17,7 +17,7 @@ namespace ServiceLayer.ServiceDomain
         private MapEntity _map;
         public Service()
         {
-            _dataLayer = new Config().DataLayerConfig;
+            _dataLayer = new Config().DataLayerService;
             _map = new MapEntity();
         }
         #endregion

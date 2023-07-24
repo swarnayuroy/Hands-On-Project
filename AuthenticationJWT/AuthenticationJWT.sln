@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLayer", "ServiceLaye
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{14081563-28E1-4898-B394-88191DBD5150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Service", "API_Service\API_Service.csproj", "{D239A670-5AA2-40FE-BD0E-62D2A097A16F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Service", "API_Service\API_Service.csproj", "{9089EF20-561F-46FA-9392-986269767AF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{14081563-28E1-4898-B394-88191DBD5150}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14081563-28E1-4898-B394-88191DBD5150}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14081563-28E1-4898-B394-88191DBD5150}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D239A670-5AA2-40FE-BD0E-62D2A097A16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D239A670-5AA2-40FE-BD0E-62D2A097A16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D239A670-5AA2-40FE-BD0E-62D2A097A16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D239A670-5AA2-40FE-BD0E-62D2A097A16F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9089EF20-561F-46FA-9392-986269767AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9089EF20-561F-46FA-9392-986269767AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9089EF20-561F-46FA-9392-986269767AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9089EF20-561F-46FA-9392-986269767AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
