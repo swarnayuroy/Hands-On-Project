@@ -7,6 +7,7 @@ using ServiceLayer.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -43,7 +44,7 @@ namespace AuthenticationJWT.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SignIn(Form credential)
+        public async Task<ActionResult> SignIn(Form credential)
         {            
             try
             {
@@ -57,7 +58,7 @@ namespace AuthenticationJWT.Controllers
                 User usrCred = _map.GetUserCredential(credential.Login);
                 UserDTO user = _map.GetUserDTO(usrCred);
 
-                bool isValid = _service.ConfirmValidCredential(user, out usrName);
+                bool isValid = await Task.Run(()=> _service.ConfirmValidCredential(user, out usrName));
                 if (isValid)
                 {
                     return RedirectToAction("Index", "Home");
@@ -78,7 +79,7 @@ namespace AuthenticationJWT.Controllers
         #region Registration
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Form newUser)
+        public async Task<ActionResult> Register(Form newUser)
         {
             try
             {
@@ -89,7 +90,7 @@ namespace AuthenticationJWT.Controllers
                 _map = new MapEntity();
                 UserDTO user = _map.GetUserDTO(newUser.Register);
 
-                bool isRegistered = _service.RegisterNewUser(user);
+                bool isRegistered = await Task.Run(()=>_service.RegisterNewUser(user));
                 if (isRegistered)
                 {
                     ModelState.Clear();

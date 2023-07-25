@@ -43,7 +43,9 @@ namespace API_Service.RepositoryLayer.Repository
             bool status = false;
             try
             {
-                user.Id = Guid.NewGuid();
+                /* below initialization of user ID and Registered Time
+                 is to be taken care in DataAccessLayer */
+                user.Id = Guid.NewGuid();           
                 user.RegisteredTime = DateTime.Now;
                 MockData.userList.Add(user);
                 status = true;

@@ -14,6 +14,8 @@ namespace DataAccessLayer.DataLayer
         {
             try
             {
+                user.Id = Guid.NewGuid();
+                user.RegisteredTime = DateTime.Now;
                 MockData.userList.Add(user);
             }
             catch (Exception)
