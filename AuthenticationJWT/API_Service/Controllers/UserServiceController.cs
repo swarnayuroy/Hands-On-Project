@@ -65,6 +65,23 @@ namespace API_Service.Controllers
             response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
             return response;
         }
+
+        [HttpPost]
+        [Route("api/checkuser")]
+        public async Task<User> CheckCredential(User user)
+        {
+            User usrDetails = null;
+            try
+            {
+                usrDetails = await Task.Run(()=> _repo.CheckCredential(user));
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message.ToString());
+                throw;
+            }
+            return usrDetails;
+        }
         #endregion
     }
 }
