@@ -64,10 +64,6 @@ F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.Razor.dll
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.WebPages.Deployment.dll
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.WebPages.dll
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.WebPages.Razor.dll
-F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Abstractions.dll
-F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Container.dll
-F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Mvc5.dll
-F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Threading.Tasks.Extensions.dll
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\log4net.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Runtime.CompilerServices.Unsafe.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.Helpers.xml
@@ -76,14 +72,11 @@ F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.Razor.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.WebPages.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.WebPages.Deployment.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.WebPages.Razor.xml
-F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Abstractions.pdb
-F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Container.pdb
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Newtonsoft.Json.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Net.Http.Formatting.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.Http.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Web.Http.WebHost.xml
 F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.AssemblyReference.cache
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.CoreCompileInputs.cache
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.CopyComplete
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.dll

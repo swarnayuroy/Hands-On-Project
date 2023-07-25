@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API_Service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace API_Service.RepositoryLayer.RepoInterface
 {
     public interface IRepository
     {
+        IEnumerable<User> GetAllUsers();
+        User CheckCredential(User user);
+        bool RegisterUser(User user);
     }
 }
