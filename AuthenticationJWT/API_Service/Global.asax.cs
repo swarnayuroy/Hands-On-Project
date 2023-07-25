@@ -11,6 +11,7 @@ namespace API_Service
     {
         protected void Application_Start()
         {
+            UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
         }

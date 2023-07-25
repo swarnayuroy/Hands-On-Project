@@ -81,3 +81,9 @@ F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.CopyComplete
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.dll
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.pdb
+F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Abstractions.dll
+F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Container.dll
+F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.WebApi.dll
+F:\Project\MyProject\AuthenticationJWT\API_Service\bin\System.Threading.Tasks.Extensions.dll
+F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Abstractions.pdb
+F:\Project\MyProject\AuthenticationJWT\API_Service\bin\Unity.Container.pdb

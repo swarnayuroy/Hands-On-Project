@@ -1,7 +1,5 @@
-﻿using API_Service.App_Start;
-using API_Service.Models;
+﻿using API_Service.Models;
 using API_Service.RepositoryLayer.RepoInterface;
-using API_Service.RepositoryLayer.Repository;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -22,7 +20,10 @@ namespace API_Service.Controllers
         public UserServiceController()
         {
             _logger = LogManager.GetLogger(typeof(UserServiceController));
-            _repo = new ServiceConfig().RepoService;
+        }
+        public UserServiceController(IRepository repoService)
+        {
+            _repo = repoService;
         }
         #endregion
 
