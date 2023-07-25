@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ServiceLayer.ServiceInterface
 {
     public interface IService
     {
-        bool ConfirmValidCredential(UserDTO user, out string usrName);
-        bool RegisterNewUser(UserDTO user);
+        Task<bool> ConfirmValidCredential(UserDTO user);
+        Task<bool> RegisterNewUser(UserDTO user);
     }
 }

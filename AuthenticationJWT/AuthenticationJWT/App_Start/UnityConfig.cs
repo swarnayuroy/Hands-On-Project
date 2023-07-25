@@ -1,3 +1,4 @@
+using AuthenticationJWT.Models.Mapping;
 using ServiceLayer.ServiceDomain;
 using ServiceLayer.ServiceInterface;
 using System.Web.Mvc;
@@ -16,7 +17,8 @@ namespace AuthenticationJWT
             // it is NOT necessary to register your controllers
             
             container.RegisterType<IService, Service>();
-            
+            container.RegisterType<IMap, MapEntity>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

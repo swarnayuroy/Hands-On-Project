@@ -7,7 +7,12 @@ using System.Web;
 
 namespace AuthenticationJWT.Models.Mapping
 {
-    public class MapEntity
+    public interface IMap
+    {
+        User GetUserCredential(LoginDetails credential);
+        UserDTO GetUserDTO(User usrCred);
+    }
+    public class MapEntity: IMap
     {
         public User GetUserCredential(LoginDetails credential)
         {

@@ -16,12 +16,13 @@ namespace AuthenticationJWT.Controllers
     public class LoginController : Controller
     {
         #region Declaration and Initialization
-        private ILog _logger;
-        private IService _service;
-        private MapEntity _map;
-        public LoginController(IService service)
+        private readonly ILog _logger;
+        private readonly IService _service;
+        private readonly IMap _mapper;
+        public LoginController(IService service, IMap mapper)
         {
             _service = service;
+            _mapper = mapper;
             _logger = LogManager.GetLogger(typeof(LoginController));
         }
         #endregion
@@ -54,11 +55,10 @@ namespace AuthenticationJWT.Controllers
                 }
                 
                 string usrName = $"";
-                _map = new MapEntity();
-                User usrCred = _map.GetUserCredential(credential.Login);
-                UserDTO user = _map.GetUserDTO(usrCred);
+                User usrCred = _mapper.GetUserCredential(credential.Login);
+                UserDTO user = _mapper.GetUserDTO(usrCred);
 
-                bool isValid = await Task.Run(()=> _service.ConfirmValidCredential(user, out usrName));
+                bool isValid = await Task.Run(()=> _service.ConfirmValidCredential(user));
                 if (isValid)
                 {
                     return RedirectToAction("Index", "Home");
@@ -86,10 +86,9 @@ namespace AuthenticationJWT.Controllers
                 if (!ModelState.IsValid)
                 {
                     return View("SignIn", newUser);
-                }                
-                _map = new MapEntity();
-                UserDTO user = _map.GetUserDTO(newUser.Register);
+                }
 
+                UserDTO user = _mapper.GetUserDTO(newUser.Register);
                 bool isRegistered = await Task.Run(()=>_service.RegisterNewUser(user));
                 if (isRegistered)
                 {

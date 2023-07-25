@@ -7,28 +7,31 @@ using ServiceLayer.StartUp;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ServiceLayer.ServiceDomain
 {
     public class Service : IService
     {
         #region Declaration and Initialization
-        private IDataLayer _dataLayer;
-        private MapEntity _map;
+        private readonly IDataLayer _dataLayer;
+        private readonly IMap _mapper;
         public Service()
         {
             _dataLayer = new Config().DataLayerService;
-            _map = new MapEntity();
+            _mapper = new Config().MapperService;
         }
         #endregion
 
         #region Services
-        public bool ConfirmValidCredential(UserDTO userDTO, out string usrName)
+        public async Task<bool> ConfirmValidCredential(UserDTO userDTO)
         {
+            bool status = false;
             try
             {
-                User user = _map.GetUserEntity(userDTO);
-                if (_dataLayer.IsValidCredential(user, out usrName))
+                User user = _mapper.GetUserEntity(userDTO);
+                status = await Task.Run(() => _dataLayer.IsValidCredential(user));
+                if (status)
                 {
                     return true;
                 }
@@ -37,15 +40,17 @@ namespace ServiceLayer.ServiceDomain
             {
                 throw;
             }
-            return false;
+            return status;
         }
 
-        public bool RegisterNewUser(UserDTO userDTO)
+        public async Task<bool> RegisterNewUser(UserDTO userDTO)
         {
+            bool status = false;
             try
             {
-                User user = _map.GetUserEntity(userDTO);
-                if (_dataLayer.RegisterUser(user))
+                User user = _mapper.GetUserEntity(userDTO);
+                status = await Task.Run(()=> _dataLayer.RegisterUser(user));
+                if (status)
                 {
                     return true;
                 }
@@ -54,7 +59,7 @@ namespace ServiceLayer.ServiceDomain
             {
                 throw;
             }
-            return false;
+            return status;
         }
         #endregion
     }

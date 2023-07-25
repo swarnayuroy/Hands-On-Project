@@ -7,7 +7,11 @@ using System.Text;
 
 namespace ServiceLayer.StartUp
 {
-    public class MapEntity
+    public interface IMap
+    {
+        User GetUserEntity(UserDTO userDTO);
+    }
+    public class MapEntity : IMap
     {
         public User GetUserEntity(UserDTO userDTO)
         {
