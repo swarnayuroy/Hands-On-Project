@@ -44,6 +44,7 @@ namespace API_Service.RepositoryLayer.Repository
             try
             {
                 user.Id = Guid.NewGuid();
+                user.RegisteredTime = DateTime.Now;
                 MockData.userList.Add(user);
                 status = true;
             }

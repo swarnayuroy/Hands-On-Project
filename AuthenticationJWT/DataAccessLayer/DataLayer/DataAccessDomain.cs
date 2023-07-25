@@ -14,7 +14,6 @@ namespace DataAccessLayer.DataLayer
         {
             try
             {
-                user.Id = Guid.NewGuid(); //need to remove this line of code after integrating to API service
                 MockData.userList.Add(user);
             }
             catch (Exception)

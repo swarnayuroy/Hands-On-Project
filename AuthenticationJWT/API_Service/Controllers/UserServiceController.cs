@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace API_Service.Controllers
@@ -28,18 +29,40 @@ namespace API_Service.Controllers
         #region User Service APIs
         [HttpGet]
         [Route("api/getusers")]
-        public IEnumerable<User> GetAllUsers()
+        public async Task<IEnumerable<User>> GetAllUsers()
         {
-            List<User> userList = null;
+            var userList = new List<User>();
             try
             {
-                userList = _repo.GetAllUsers().ToList<User>();                
+                userList = await Task.Run(()=> _repo.GetAllUsers().ToList<User>());                
             }
             catch (Exception ex)
             {
                 _logger.Error(ex.Message.ToString());
             }
             return userList;
+        }
+
+        [HttpPost]
+        [Route("api/registeruser")]
+        public async Task<HttpResponseMessage> RegisterUser(User user)
+        {
+            HttpResponseMessage response = null;
+            try
+            {
+                bool status = await Task.Run(() => _repo.RegisterUser(user));
+                if (status)
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.Created);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message.ToString());
+            }
+            response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            return response;
         }
         #endregion
     }
