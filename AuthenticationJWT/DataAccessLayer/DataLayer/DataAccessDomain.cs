@@ -1,5 +1,4 @@
-﻿using DataAccessLayer.DataLayer.Data;
-using DataAccessLayer.DataLayer.Entity;
+﻿using DataAccessLayer.DataLayer.Entity;
 using DataAccessLayer.DataLayerInterface;
 using Newtonsoft.Json;
 using System;

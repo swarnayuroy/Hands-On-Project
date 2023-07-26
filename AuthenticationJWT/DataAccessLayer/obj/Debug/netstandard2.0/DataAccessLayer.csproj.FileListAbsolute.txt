@@ -6,4 +6,3 @@ F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\obj\Debug\netstandard2.0\
 F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\obj\Debug\netstandard2.0\DataAccessLayer.csproj.CoreCompileInputs.cache
 F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\obj\Debug\netstandard2.0\DataAccessLayer.dll
 F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\obj\Debug\netstandard2.0\DataAccessLayer.pdb
-F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\obj\Debug\netstandard2.0\DataAccessLayer.csproj.AssemblyReference.cache
