@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "xAl7XcDtL2am8dk9NjLOuB1qASDAmR2kPGOGVUBgIzEg0AFoAMLM5bWo6W2MPvm65SHEVn2N1EvmKdgUnhr3EQ==",
+  "dgSpecHash": "lzhnUax3zgpddvJK0Z9WLf5Nh5yT9LL7pEWhZZAWdJvJJDgMGVlzmJiOh69iGpWvhMlruWvhZbu3RlxHr3MKPA==",
   "success": true,
   "projectFilePath": "F:\\Project\\MyProject\\AuthenticationJWT\\ServiceLayer\\ServiceLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\swarn\\.nuget\\packages\\automapper\\4.0.4\\automapper.4.0.4.nupkg.sha512",
     "C:\\Users\\swarn\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\swarn\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\swarn\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\swarn\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512"
   ],
   "logs": [
     {

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataAccessLayer.DataLayerInterface
 {
     public interface IDataLayer
     {
-        bool IsValidCredential(User user);
-        bool RegisterUser(User user);
+        Task<bool> IsValidCredential(User user);
+        Task<bool> RegisterUser(User user);
     }
 }
