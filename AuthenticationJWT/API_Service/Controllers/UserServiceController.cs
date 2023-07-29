@@ -65,7 +65,10 @@ namespace API_Service.Controllers
             return response;
         }
 
-        //need to dicard the below endpoint once the token validation is implemented successfully
+        /*
+         need to dicard the below endpoint once the token 
+         validation is implemented successfully
+        */
         [HttpPost]
         [Route("api/checkuser")]
         public async Task<User> CheckCredential(User user)
