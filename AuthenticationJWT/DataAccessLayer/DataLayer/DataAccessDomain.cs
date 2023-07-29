@@ -27,8 +27,6 @@ namespace DataAccessLayer.DataLayer
             bool responseStatus = false;
             try
             {
-                user.Id = Guid.NewGuid();
-                user.RegisteredTime = DateTime.Now;
                 StringContent usrData = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await Task.Run(() =>_client.PostAsync(_client.BaseAddress + "registeruser", usrData).Result);
                 if (response.IsSuccessStatusCode)
@@ -42,7 +40,6 @@ namespace DataAccessLayer.DataLayer
             }
             return responseStatus;
         }
-
         public async Task<bool> IsValidCredential(User user)
         {
             User userDetail = null;

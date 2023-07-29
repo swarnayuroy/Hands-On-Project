@@ -16,10 +16,9 @@ namespace API_Service.Controllers
         #region Declaration and Initialization
         private IRepository _repo;
         private readonly ILog _logger;
-        
         public UserServiceController()
         {
-            _logger = LogManager.GetLogger(typeof(UserServiceController));
+            _logger = LogManager.GetLogger(typeof(UserServiceController));            
         }
         public UserServiceController(IRepository repoService)
         {
@@ -66,6 +65,7 @@ namespace API_Service.Controllers
             return response;
         }
 
+        //need to dicard the below endpoint once the token validation is implemented successfully
         [HttpPost]
         [Route("api/checkuser")]
         public async Task<User> CheckCredential(User user)
@@ -78,9 +78,28 @@ namespace API_Service.Controllers
             catch (Exception ex)
             {
                 _logger.Error(ex.Message.ToString());
-                throw;
             }
             return usrDetails;
+        }
+        
+        [HttpPost]
+        [Route("api/token")]
+        public IHttpActionResult GetTokenForValidation(User user)
+        {
+            TokenResponse token = null;
+            try
+            {
+                token = _repo.GetTokenForValidation(user);
+                if (token == null)
+                {
+                    throw new NullReferenceException("Couldn't generate a token");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message.ToString());
+            }            
+            return Ok(token);
         }
         #endregion
     }
