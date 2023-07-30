@@ -1,4 +1,5 @@
-﻿using API_Service.Models;
+﻿using API_Service.App_Start;
+using API_Service.Models;
 using API_Service.Models.Data;
 using API_Service.RepositoryLayer.RepoInterface;
 using Microsoft.IdentityModel.Tokens;
@@ -14,13 +15,6 @@ namespace API_Service.RepositoryLayer.Repository
 {
     public class DataRepository : IRepository
     {
-        #region Declaration and Initialization
-        private readonly string _signingKey;
-        public DataRepository()
-        {
-            _signingKey = "4Nmw1zotLoYdFJpJPR2p21hyahPB2qQIDpY8lKpp+6I=";
-        }
-        #endregion
         public User CheckCredential(User user)
         {
             User userDetail = null;
@@ -51,28 +45,13 @@ namespace API_Service.RepositoryLayer.Repository
 
         public TokenResponse GetTokenForValidation(User user)
         {
-            TokenResponse response = null;
+            TokenResponse response = new TokenResponse { Token = string.Empty };
             try
             {
                 User validUser = new DataRepository().CheckCredential(user);
                 if (validUser != null)
                 {
-                    //generating a token
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_signingKey));
-                    var tokenDescriptor = new SecurityTokenDescriptor
-                    {
-                        Subject = new ClaimsIdentity(new Claim[]
-                        {
-                            new Claim(JwtRegisteredClaimNames.Sub, validUser.Id.ToString()),
-                            new Claim(ClaimTypes.Name, validUser.Name),
-                            new Claim(ClaimTypes.Email, validUser.Email)
-                        }),
-                        Expires = DateTime.UtcNow.AddMinutes(5),
-                        SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature)
-                    };
-
-                    response.Token = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
+                    response.Token = JwtManager.GenerateToken(validUser);
                 }
             }
             catch (Exception)

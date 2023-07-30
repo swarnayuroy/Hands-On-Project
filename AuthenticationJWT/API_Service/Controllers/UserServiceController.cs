@@ -1,4 +1,5 @@
 ﻿using API_Service.Models;
+using API_Service.Models.Filter;
 using API_Service.RepositoryLayer.RepoInterface;
 using log4net;
 using System;
@@ -16,35 +17,17 @@ namespace API_Service.Controllers
         #region Declaration and Initialization
         private IRepository _repo;
         private readonly ILog _logger;
-        public UserServiceController()
-        {
-            _logger = LogManager.GetLogger(typeof(UserServiceController));            
-        }
         public UserServiceController(IRepository repoService)
         {
+            _logger = LogManager.GetLogger(typeof(UserServiceController));
             _repo = repoService;
         }
         #endregion
 
         #region User Service APIs
-        [HttpGet]
-        [Route("api/getusers")]
-        public async Task<IEnumerable<User>> GetAllUsers()
-        {
-            var userList = new List<User>();
-            try
-            {
-                userList = await Task.Run(()=> _repo.GetAllUsers().ToList<User>());                
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex.Message.ToString());
-            }
-            return userList;
-        }
-
         [HttpPost]
         [Route("api/registeruser")]
+        [AllowAnonymous]
         public async Task<HttpResponseMessage> RegisterUser(User user)
         {
             HttpResponseMessage response = null;
@@ -59,7 +42,7 @@ namespace API_Service.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message.ToString());
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
             }
             response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
             return response;
@@ -71,39 +54,66 @@ namespace API_Service.Controllers
         */
         [HttpPost]
         [Route("api/checkuser")]
-        public async Task<User> CheckCredential(User user)
-        {
-            User usrDetails = null;
+        public async Task<HttpResponseMessage> CheckCredential(User user)
+        {            
             try
             {
-                usrDetails = await Task.Run(()=> _repo.CheckCredential(user));
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex.Message.ToString());
-            }
-            return usrDetails;
-        }
-        
-        [HttpPost]
-        [Route("api/token")]
-        public IHttpActionResult GetTokenForValidation(User user)
-        {
-            TokenResponse token = null;
-            try
-            {
-                token = _repo.GetTokenForValidation(user);
-                if (token == null)
+                User usrDetails = await Task.Run(()=> _repo.CheckCredential(user));
+                if (usrDetails != null)
                 {
-                    throw new NullReferenceException("Couldn't generate a token");
+                    return Request.CreateResponse(HttpStatusCode.OK, usrDetails);
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message.ToString());
-            }            
-            return Ok(token);
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound, "Invalid Credential");
         }
+        
+        [HttpPost]
+        [Route("api/generatetoken")]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> GetTokenForValidation(User user)
+        {            
+            try
+            {
+                TokenResponse tokenResponse = await Task.Run(() => _repo.GetTokenForValidation(user));
+                if (!string.IsNullOrEmpty(tokenResponse.Token))
+                {                    
+                    return Request.CreateResponse(HttpStatusCode.OK, tokenResponse);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Some error occurred!");
+            }
+            return Request.CreateResponse(HttpStatusCode.Unauthorized, "not an user! couldn't generate token.");
+        }
+
+        [HttpGet]
+        [Route("api/getusers")]
+        [JwtAuthentication]
+        public async Task<HttpResponseMessage> GetAllUsers()
+        {
+            try
+            {
+                List<User> userList = await Task.Run(() => _repo.GetAllUsers().ToList<User>());
+                if (userList.Count != 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, userList);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Some error occurred, please try again later!");
+            }
+            return Request.CreateResponse(HttpStatusCode.NoContent, "No content for display!");
+        }
+
         #endregion
     }
 }

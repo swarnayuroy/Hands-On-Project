@@ -1,0 +1,1 @@
+2023-07-29 22:34:01,335 ERROR: Attempted to divide by zero.

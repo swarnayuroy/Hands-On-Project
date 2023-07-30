@@ -1,1 +1,14 @@
-2023-07-25 15:31:29,857 ERROR: Object reference not set to an instance of an object.
+2023-07-30 01:36:40,400 ERROR: Value cannot be null.
+Parameter name: value
+   at System.Security.Claims.Claim..ctor(String type, String value, String valueType, String issuer, String originalIssuer, ClaimsIdentity subject, String propertyKey, String propertyValue)
+   at System.Security.Claims.Claim..ctor(String type, String value)
+   at API_Service.App_Start.JwtManager.GenerateToken(User userdetails) in F:\Project\MyProject\AuthenticationJWT\API_Service\App_Start\JwtManager.cs:line 20
+   at API_Service.RepositoryLayer.Repository.DataRepository.GetTokenForValidation(User user) in F:\Project\MyProject\AuthenticationJWT\API_Service\RepositoryLayer\Repository\DataRepository.cs:line 59
+   at API_Service.Controllers.UserServiceController.<>c__DisplayClass5_0.<GetTokenForValidation>b__0() in F:\Project\MyProject\AuthenticationJWT\API_Service\Controllers\UserServiceController.cs:line 82
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at API_Service.Controllers.UserServiceController.<GetTokenForValidation>d__5.MoveNext() in F:\Project\MyProject\AuthenticationJWT\API_Service\Controllers\UserServiceController.cs:line 82
