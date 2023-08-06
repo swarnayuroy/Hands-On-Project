@@ -61,6 +61,9 @@ namespace AuthenticationJWT.Controllers
                 string token = await Task.Run(()=> _service.ConfirmValidCredential(user));
                 if (!string.IsNullOrEmpty(token))
                 {
+                    HttpCookie cookie = new HttpCookie("userToken", token);
+                    cookie.HttpOnly = true;
+                    Response.Cookies.Add(cookie);
                     return RedirectToAction("Index", "Home");
                 }
             }
