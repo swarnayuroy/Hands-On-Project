@@ -12,6 +12,7 @@ using System.Web.Http;
 
 namespace API_Service.Controllers
 {
+    [JwtAuthentication]
     public class UserServiceController : ApiController
     {
         #region Declaration and Initialization
@@ -26,8 +27,7 @@ namespace API_Service.Controllers
 
         #region User Service APIs
         [HttpGet]
-        [Route("api/getusers")]
-        [JwtAuthentication]
+        [Route("api/getusers")]        
         public async Task<HttpResponseMessage> GetAllUsers()
         {
             try
@@ -45,7 +45,6 @@ namespace API_Service.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.NoContent, "No content for display!");
         }
-
         #endregion
     }
 }

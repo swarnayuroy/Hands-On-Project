@@ -40,28 +40,26 @@ namespace DataAccessLayer.DataLayer
             }
             return responseStatus;
         }
-        public async Task<bool> IsValidCredential(User user)
+        public async Task<string> IsValidCredential(User cred)
         {
-            User userDetail = null;
-            bool responseStatus = false;
+            TokenResponse tokenResponse = new TokenResponse() 
+            { 
+                Token = "" 
+            };
             try
             {
-                StringContent usrData = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await Task.Run(() => _client.PostAsync(_client.BaseAddress + "checkuser", usrData).Result);
+                StringContent usrCred = new StringContent(JsonConvert.SerializeObject(cred), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await Task.Run(() => _client.PostAsync(_client.BaseAddress + "generatetoken", usrCred).Result);
                 if (response.IsSuccessStatusCode)
                 {
-                    userDetail = JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
-                    if (userDetail != null)
-                    {
-                        responseStatus = true;
-                    }                    
+                    tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(response.Content.ReadAsStringAsync().Result);
                 }                
             }
             catch (Exception)
             {
                 throw;
             }
-            return responseStatus;
+            return tokenResponse.Token;
         }
     }
 }

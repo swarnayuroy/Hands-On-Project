@@ -8,7 +8,7 @@ namespace ServiceLayer.ServiceInterface
 {
     public interface IService
     {
-        Task<bool> ConfirmValidCredential(UserDTO user);
+        Task<string> ConfirmValidCredential(UserDTO user);
         Task<bool> RegisterNewUser(UserDTO user);
     }
 }

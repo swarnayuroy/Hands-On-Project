@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace API_Service.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : ApiController
     {
         #region Declaration and Initialization

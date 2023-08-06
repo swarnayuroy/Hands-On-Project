@@ -58,8 +58,8 @@ namespace AuthenticationJWT.Controllers
                 User usrCred = _mapper.GetUserCredential(credential.Login);
                 UserDTO user = _mapper.GetUserDTO(usrCred);
 
-                bool isValid = await Task.Run(()=> _service.ConfirmValidCredential(user));
-                if (isValid)
+                string token = await Task.Run(()=> _service.ConfirmValidCredential(user));
+                if (!string.IsNullOrEmpty(token))
                 {
                     return RedirectToAction("Index", "Home");
                 }

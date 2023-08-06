@@ -1,1 +1,2 @@
 2023-07-29 22:34:01,335 ERROR: Attempted to divide by zero.
+2023-08-06 12:55:30,439 ERROR: Object reference not set to an instance of an object.

@@ -24,23 +24,19 @@ namespace ServiceLayer.ServiceDomain
         #endregion
 
         #region Services
-        public async Task<bool> ConfirmValidCredential(UserDTO userDTO)
+        public async Task<string> ConfirmValidCredential(UserDTO userDTO)
         {
-            bool status = false;
+            string token = null;
             try
             {
                 User user = _mapper.GetUserEntity(userDTO);
-                status = await Task.Run(() => _dataLayer.IsValidCredential(user));
-                if (status)
-                {
-                    return true;
-                }
+                token = await Task.Run(() => _dataLayer.IsValidCredential(user));
             }
             catch (Exception)
             {
                 throw;
             }
-            return status;
+            return token;
         }
 
         public async Task<bool> RegisterNewUser(UserDTO userDTO)
