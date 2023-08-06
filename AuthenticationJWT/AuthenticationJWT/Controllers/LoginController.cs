@@ -38,7 +38,7 @@ namespace AuthenticationJWT.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message.ToString());
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
                 return View("Some error occurred!");
             }            
         }
@@ -66,7 +66,7 @@ namespace AuthenticationJWT.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message.ToString());
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
                 ModelState.Clear();
                 ViewBag.Error = $"We encountered some problem. Please try again later.";
                 return View("SignIn");
@@ -98,7 +98,7 @@ namespace AuthenticationJWT.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message.ToString());
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
                 ModelState.Clear();
                 ViewBag.Error = $"We encountered some problem. Please try again later.";
                 return View("SignIn");
