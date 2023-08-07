@@ -116,3 +116,5 @@ F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Text.Encodin
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Text.Json.xml
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.Threading.Tasks.Extensions.xml
 F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.ValueTuple.xml
+F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.IdentityModel.Tokens.Jwt.dll
+F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\bin\System.IdentityModel.Tokens.Jwt.xml

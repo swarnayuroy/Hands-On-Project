@@ -29,11 +29,12 @@ namespace AuthenticationJWT.Controllers
 
         #region Login
         [HttpGet]
-        public ActionResult SignIn()
+        public async Task<ActionResult> SignIn()
         {
+            Form usrForm = null;
             try
             {                
-                Form usrForm = new Form();
+                await Task.Run(()=>usrForm = new Form());
                 return View(usrForm);
             }
             catch (Exception ex)

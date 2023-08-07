@@ -1,4 +1,4 @@
-﻿
+﻿@model AuthenticationJWT.Models.UserDetails
 @{
     Layout = null;
 }
@@ -11,6 +11,6 @@
     <title>Index</title>
 </head>
 <body>
-    <h1>Welcome</h1>
+    <h1>Welcome @Model.Name.Split(' ')[0]</h1>
 </body>
 </html>

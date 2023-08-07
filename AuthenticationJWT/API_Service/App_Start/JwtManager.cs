@@ -21,7 +21,7 @@ namespace API_Service.App_Start
             {                
                 Subject = new ClaimsIdentity(new[]
                         {
-                            new Claim(JwtRegisteredClaimNames.Sub, userdetail.Id.ToString()),
+                            new Claim(ClaimTypes.NameIdentifier, userdetail.Id.ToString()),
                             new Claim(ClaimTypes.Name, userdetail.Name),
                             new Claim(ClaimTypes.Email, userdetail.Email),
                         }),
