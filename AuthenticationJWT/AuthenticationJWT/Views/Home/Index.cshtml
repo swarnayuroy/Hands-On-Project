@@ -8,9 +8,19 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <link rel="stylesheet" href="~/Content/user-pagelayout.css" />
+    <link rel="stylesheet" href="~/Content/header-style.css" />
+    <title>Home</title>
 </head>
 <body>
-    <h1>Welcome @Model.Name.Split(' ')[0]</h1>
+    <div class="header">
+        <div class="left-head">
+            <h1>POC</h1>
+        </div>
+        <div class="right-head">
+            <h3>Welcome @Model.Name.Split(' ')[0]</h3>
+            <a href="/Home/Logout">Logout</a>
+        </div>
+    </div>    
 </body>
 </html>

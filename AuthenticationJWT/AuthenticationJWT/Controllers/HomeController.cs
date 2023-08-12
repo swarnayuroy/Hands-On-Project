@@ -27,22 +27,33 @@ namespace AuthenticationJWT.Controllers
             try
             {
                 string token = Request.Cookies["userToken"]?.Value;
-                ClaimsPrincipal claimsPrincipal = await Task.Run(()=> JwtHelper.GetClaimsPrincipalFromToken(token));
-                if (claimsPrincipal != null)
+                if (!string.IsNullOrEmpty(token))
                 {
-                    UserDetails user = new UserDetails
+                    ClaimsPrincipal claimsPrincipal = await Task.Run(() => JwtHelper.GetClaimsPrincipalFromToken(token));
+                    if (claimsPrincipal != null)
                     {
-                        Id = Guid.Parse(claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value),
-                        Name = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value,
-                        Email = claimsPrincipal.FindFirst(ClaimTypes.Email)?.Value
-                    };
-                    return View(user);
-                }                
+                        UserDetails user = new UserDetails
+                        {
+                            Id = Guid.Parse(claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value),
+                            Name = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value,
+                            Email = claimsPrincipal.FindFirst(ClaimTypes.Email)?.Value
+                        };
+                        return View(user);
+                    }
+                }                              
             }
             catch (Exception ex)
             {
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");                
             }
+            return RedirectToAction("SignIn", "Login");
+        }
+        public ActionResult Logout()
+        {
+            HttpCookie cookie = Request.Cookies["userToken"];
+            cookie.Expires = DateTime.Now.AddMinutes(-1);
+            Response.Cookies.Add(cookie);
+            Request.Cookies.Remove("userToken");
             return RedirectToAction("SignIn", "Login");
         }
     }
