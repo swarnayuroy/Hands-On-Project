@@ -3,7 +3,9 @@
         <h1>JWT-POC</h1>
     </div>
     <div class="right-head">
-        <h3>Welcome @Model.Name.Split(' ')[0]</h3>
-        <a href="/Home/Logout"><i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a>
+        <h3>Welcome <i>@Model.Name.Split(' ')[0]</i></h3>
+        <div class="logout">
+            <span class="text">Logout</span><a href="/Home/Logout">&nbsp;<i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a>            
+        </div>        
     </div>
 </div>

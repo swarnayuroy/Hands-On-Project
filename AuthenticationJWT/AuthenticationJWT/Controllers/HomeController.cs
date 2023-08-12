@@ -53,9 +53,12 @@ namespace AuthenticationJWT.Controllers
         public async Task<ActionResult> Logout()
         {
             HttpCookie cookie = Request.Cookies["userToken"];
-            cookie.Expires = DateTime.Now.AddMinutes(-1);
-            Response.Cookies.Add(cookie);
-            await Task.Run(()=>Request.Cookies.Remove("userToken"));
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddMinutes(-1);
+                Response.Cookies.Add(cookie);
+                await Task.Run(() => Request.Cookies.Remove("userToken"));
+            }            
             return RedirectToAction("SignIn", "Login");
         }
     }
