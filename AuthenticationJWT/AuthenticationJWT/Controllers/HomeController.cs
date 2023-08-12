@@ -42,7 +42,7 @@ namespace AuthenticationJWT.Controllers
                         };
                         return View(user);
                     }
-                }                              
+                }
             }
             catch (Exception ex)
             {
@@ -50,12 +50,12 @@ namespace AuthenticationJWT.Controllers
             }
             return RedirectToAction("SignIn", "Login");
         }
-        public ActionResult Logout()
+        public async Task<ActionResult> Logout()
         {
             HttpCookie cookie = Request.Cookies["userToken"];
             cookie.Expires = DateTime.Now.AddMinutes(-1);
             Response.Cookies.Add(cookie);
-            Request.Cookies.Remove("userToken");
+            await Task.Run(()=>Request.Cookies.Remove("userToken"));
             return RedirectToAction("SignIn", "Login");
         }
     }

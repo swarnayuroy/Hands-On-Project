@@ -9,18 +9,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/user-pagelayout.css" />
-    <link rel="stylesheet" href="~/Content/header-style.css" />
+    <link rel="stylesheet" href="~/Content/header-footer-style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Home</title>
 </head>
 <body>
-    <div class="header">
-        <div class="left-head">
-            <h1>POC</h1>
-        </div>
-        <div class="right-head">
-            <h3>Welcome @Model.Name.Split(' ')[0]</h3>
-            <a href="/Home/Logout">Logout</a>
-        </div>
-    </div>    
+    @Html.Partial("_Header", Model);
+    @Html.Partial("_Footer");
 </body>
 </html>
