@@ -9,9 +9,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace AuthenticationJWT.Controllers
 {
+    [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
     public class HomeController : Controller
     {
         #region Declaration and Initialization
