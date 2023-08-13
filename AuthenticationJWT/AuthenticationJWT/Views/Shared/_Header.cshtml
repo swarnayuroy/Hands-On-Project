@@ -3,9 +3,24 @@
         <h1>JWT-POC</h1>
     </div>
     <div class="right-head">
-        <h3>Welcome <i>@Model.Name.Split(' ')[0]</i></h3>
-        <div class="logout">
-            <span class="text">Logout</span><a href="/Home/Logout">&nbsp;<i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a>            
+        <div class="greet">
+            <h3>
+                Welcome <i>@Model.Name.Split(' ')[0]</i>&nbsp;
+                <i class="fa fa-caret-down fa-lg" aria-hidden="true" id="dropdown-icon" onclick="setSubMenuState()"></i>
+            </h3>
+            <div class="sub-menu" id="sub-menu">
+                <a href="#" class="edit-profile">
+                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+                    <p>View Profile</p>
+                </a>
+                <a href="#" class="edit-profile">
+                    <i class="fa fa-key fa-lg" aria-hidden="true"></i>
+                    <p>Change Password</p>
+                </a>
+            </div>
         </div>        
-    </div>
+        <div class="logout">
+            <span class="text">Logout</span><a href="/Home/Logout">&nbsp;<i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a>
+        </div>
+    </div>    
 </div>
