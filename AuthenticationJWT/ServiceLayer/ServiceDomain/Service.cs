@@ -39,6 +39,24 @@ namespace ServiceLayer.ServiceDomain
             return token;
         }
 
+        public async Task<UserDetailsDTO> GetUserDetail(string token, Guid userId)
+        {
+            UserDetailsDTO userDetail = null;
+            try
+            {
+                User user = await Task.Run(() => _dataLayer.GetUserDetail(token, userId));
+                if (user != null)
+                {
+                    userDetail = _mapper.GetUserDetail(user);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return userDetail;
+        }
+
         public async Task<bool> RegisterNewUser(UserDTO userDTO)
         {
             bool status = false;

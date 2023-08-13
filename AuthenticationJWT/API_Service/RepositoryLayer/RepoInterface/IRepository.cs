@@ -11,6 +11,7 @@ namespace API_Service.RepositoryLayer.RepoInterface
     {
         IEnumerable<User> GetAllUsers();
         User CheckCredential(User user);
+        User GetUserById(string userId);
         TokenResponse GetTokenForValidation(User user);
         bool RegisterUser(User user);
     }

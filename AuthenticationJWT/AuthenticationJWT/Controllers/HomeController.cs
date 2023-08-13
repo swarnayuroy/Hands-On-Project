@@ -1,9 +1,11 @@
 ﻿using AuthenticationJWT.Models;
+using AuthenticationJWT.Models.Mapping;
 using AuthenticationJWT.Utils;
 using log4net;
+using ServiceLayer.DTO;
+using ServiceLayer.ServiceInterface;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -18,8 +20,12 @@ namespace AuthenticationJWT.Controllers
     {
         #region Declaration and Initialization
         private readonly ILog _logger;
-        public HomeController()
+        private readonly IService _service;
+        private readonly IMap _mapper;
+        public HomeController(IService service, IMap mapper)
         {
+            _service = service;
+            _mapper = mapper;
             _logger = LogManager.GetLogger(typeof(LoginController));
         }
         #endregion
@@ -34,7 +40,7 @@ namespace AuthenticationJWT.Controllers
                     ClaimsPrincipal claimsPrincipal = await Task.Run(() => JwtHelper.GetClaimsPrincipalFromToken(token));
                     if (claimsPrincipal != null)
                     {
-                        UserDetails user = new UserDetails
+                        User user = new User
                         {
                             Id = Guid.Parse(claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value),
                             Name = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value,
@@ -59,6 +65,29 @@ namespace AuthenticationJWT.Controllers
                 Response.Cookies.Add(cookie);
                 await Task.Run(() => Request.Cookies.Remove("userToken"));
             }            
+            return RedirectToAction("SignIn", "Login");
+        }
+        
+        [HttpGet]
+        public async Task<ActionResult> EditUser(Guid id)
+        {
+            try
+            {
+                string token = Request.Cookies["userToken"]?.Value;
+                if (!string.IsNullOrEmpty(token))
+                {
+                    UserDetailsDTO user = await Task.Run(() => _service.GetUserDetail(token, id));
+                    if (user!=null)
+                    {
+                        UserDetails userDetail = _mapper.GetUserDetails(user);
+                        return View(userDetail);
+                    }                    
+                }                
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+            }
             return RedirectToAction("SignIn", "Login");
         }
     }

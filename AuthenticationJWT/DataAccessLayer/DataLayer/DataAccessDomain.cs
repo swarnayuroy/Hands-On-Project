@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,6 +61,24 @@ namespace DataAccessLayer.DataLayer
                 throw;
             }
             return tokenResponse.Token;
+        }
+        public async Task<User> GetUserDetail(string token, Guid userId)
+        {
+            User user = null;
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                HttpResponseMessage response = await Task.Run(() => _client.GetAsync($"{_client.BaseAddress}/user/{userId}").Result);
+                if (response.IsSuccessStatusCode)
+                {
+                    user = JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return user;
         }
     }
 }

@@ -10,5 +10,6 @@ namespace DataAccessLayer.DataLayerInterface
     {
         Task<string> IsValidCredential(User user);
         Task<bool> RegisterUser(User cred);
+        Task<User> GetUserDetail(string token, Guid userId);
     }
 }

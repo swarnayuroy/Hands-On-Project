@@ -45,6 +45,26 @@ namespace API_Service.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.NoContent, "No content for display!");
         }
+
+        [HttpGet]
+        [Route("api/user/{id}")]
+        public async Task<HttpResponseMessage> GetUserById(string id)
+        {
+            try
+            {
+                User userDetail = await Task.Run(()=>_repo.GetUserById(id));
+                if (userDetail != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, userDetail);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Some error occurred, please try again later!");
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound, "User not found!");
+        }
         #endregion
     }
 }

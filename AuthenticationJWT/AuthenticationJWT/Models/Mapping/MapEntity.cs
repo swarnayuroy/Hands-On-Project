@@ -10,6 +10,7 @@ namespace AuthenticationJWT.Models.Mapping
     public interface IMap
     {
         User GetUserCredential(LoginDetails credential);
+        UserDetails GetUserDetails(UserDetailsDTO userDetail);
         UserDTO GetUserDTO(User usrCred);
     }
     public class MapEntity: IMap
@@ -20,6 +21,14 @@ namespace AuthenticationJWT.Models.Mapping
             User user = Mapper.Map<LoginDetails, User>(credential);
             return user;
         }
+
+        public UserDetails GetUserDetails(UserDetailsDTO userDetail)
+        {
+            Mapper.CreateMap<UserDetailsDTO, UserDetails>();
+            UserDetails user = Mapper.Map<UserDetailsDTO, UserDetails>(userDetail);
+            return user;
+        }
+
         public UserDTO GetUserDTO(User usrCred)
         {
             Mapper.CreateMap<User, UserDTO>();

@@ -1,0 +1,22 @@
+2023-08-13 20:44:38,962 ERROR: One or more errors occurred.
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at DataAccessLayer.DataLayer.DataAccessDomain.<>c__DisplayClass5_0.<GetUserDetail>b__0() in F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\DataLayer\DataAccessDomain.cs:line 72
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at DataAccessLayer.DataLayer.DataAccessDomain.<GetUserDetail>d__5.MoveNext() in F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\DataLayer\DataAccessDomain.cs:line 85
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ServiceLayer.ServiceDomain.Service.<GetUserDetail>d__4.MoveNext() in F:\Project\MyProject\AuthenticationJWT\ServiceLayer\ServiceDomain\Service.cs:line 55
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AuthenticationJWT.Controllers.HomeController.<EditUser>d__6.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 79

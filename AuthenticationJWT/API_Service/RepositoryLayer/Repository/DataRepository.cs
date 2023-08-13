@@ -61,6 +61,20 @@ namespace API_Service.RepositoryLayer.Repository
             return response;
         }
 
+        public User GetUserById(string userId)
+        {
+            User userDetail = new User();
+            try
+            {
+                userDetail = MockData.userList.Where(usr => usr.Id == Guid.Parse(userId)).FirstOrDefault<User>();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return userDetail;
+        }
+
         public bool RegisterUser(User user)
         {
             bool status = false;
