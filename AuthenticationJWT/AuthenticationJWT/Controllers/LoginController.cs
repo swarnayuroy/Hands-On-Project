@@ -1,5 +1,5 @@
 ﻿using AuthenticationJWT.Models;
-using AuthenticationJWT.Models.Mapping;
+using AuthenticationJWT.Utils;
 using AutoMapper;
 using log4net;
 using ServiceLayer.DTO;

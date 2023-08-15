@@ -1,5 +1,4 @@
 ﻿using AuthenticationJWT.Models;
-using AuthenticationJWT.Models.Mapping;
 using AuthenticationJWT.Utils;
 using log4net;
 using ServiceLayer.DTO;
@@ -88,7 +87,7 @@ namespace AuthenticationJWT.Controllers
             {
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");
             }
-            return RedirectToAction("SignIn", "Login");
+            return RedirectToAction("Logout", "Home");
         }
     }
 }

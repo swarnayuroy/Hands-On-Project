@@ -1,4 +1,4 @@
-using AuthenticationJWT.Models.Mapping;
+using AuthenticationJWT.Utils;
 using ServiceLayer.ServiceDomain;
 using ServiceLayer.ServiceInterface;
 using System.Web.Mvc;
