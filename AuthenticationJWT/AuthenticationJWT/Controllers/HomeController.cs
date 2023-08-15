@@ -72,16 +72,19 @@ namespace AuthenticationJWT.Controllers
         {
             try
             {
-                string token = Request.Cookies["userToken"]?.Value;
-                if (!string.IsNullOrEmpty(token))
+                if (id != Guid.Empty)
                 {
-                    UserDetailsDTO user = await Task.Run(() => _service.GetUserDetail(token, id));
-                    if (user!=null)
+                    string token = Request.Cookies["userToken"]?.Value;
+                    if (!string.IsNullOrEmpty(token))
                     {
-                        UserDetails userDetail = _mapper.GetUserDetails(user);
-                        return View(userDetail);
-                    }                    
-                }                
+                        UserDetailsDTO user = await Task.Run(() => _service.GetUserDetail(token, id));
+                        if (user != null)
+                        {
+                            UserDetails userDetail = _mapper.GetUserDetails(user);
+                            return View(userDetail);
+                        }
+                    }
+                }                                
             }
             catch (Exception ex)
             {
