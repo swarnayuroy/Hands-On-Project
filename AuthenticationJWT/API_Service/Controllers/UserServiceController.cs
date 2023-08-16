@@ -32,7 +32,7 @@ namespace API_Service.Controllers
         {
             try
             {
-                List<User> userList = await Task.Run(() => _repo.GetAllUsers().ToList<User>());
+                IList<User> userList = await Task.Run(()=>_repo.GetAllUsers());
                 if (userList.Count != 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, userList);

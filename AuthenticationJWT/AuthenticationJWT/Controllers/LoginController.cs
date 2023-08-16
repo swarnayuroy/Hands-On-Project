@@ -111,6 +111,20 @@ namespace AuthenticationJWT.Controllers
             ViewBag.Error = $"Registration failed! Please try again later.";            
             return View("SignIn");
         }
+
+        public async Task<JsonResult> IsEmailInUse(Form newUser)
+        {
+            try
+            {
+                bool isEmailExist = await Task.Run(() => _service.IsEmailExist(newUser.Register.Email));
+                return Json(!isEmailExist, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");                
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

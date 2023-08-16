@@ -8,6 +8,7 @@ namespace ServiceLayer.ServiceInterface
 {
     public interface IService
     {
+        Task<bool> IsEmailExist(string email);
         Task<string> ConfirmValidCredential(UserDTO user);
         Task<bool> RegisterNewUser(UserDTO user);
         Task<UserDetailsDTO> GetUserDetail(string token, Guid userId);

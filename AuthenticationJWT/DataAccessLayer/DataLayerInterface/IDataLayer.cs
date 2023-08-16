@@ -9,6 +9,7 @@ namespace DataAccessLayer.DataLayerInterface
     public interface IDataLayer
     {
         Task<string> IsValidCredential(User user);
+        Task<bool> IsEmailExist(string email);
         Task<bool> RegisterUser(User cred);
         Task<User> GetUserDetail(string token, Guid userId);
     }

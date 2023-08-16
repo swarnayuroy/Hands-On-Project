@@ -47,6 +47,26 @@ namespace API_Service.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("api/getemails")]
+        public async Task<HttpResponseMessage> GetEmailList()
+        {
+            try
+            {
+                IList<string> emailList = await Task.Run(() => _reposervice.GetEmailList());
+                if (emailList.Count!=0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, emailList);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Some error occurred, please try again later!");
+            }
+            return Request.CreateResponse(HttpStatusCode.NoContent, "No content for display!"); ;
+        }
+
         /*
          need to dicard the below endpoint once the token 
          validation is implemented successfully

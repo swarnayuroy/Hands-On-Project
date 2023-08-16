@@ -9,18 +9,19 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace API_Service.RepositoryLayer.Repository
 {
     public class DataRepository : IRepository
     {
-        public User CheckCredential(User user)
+        public async Task<User> CheckCredential(User user)
         {
             User userDetail = null;
             try
             {
-                userDetail = MockData.userList.Where(usr => usr.Email == user.Email && usr.Password == user.Password).FirstOrDefault<User>();
+                userDetail = await Task.Run(()=>MockData.userList.Where(usr => usr.Email == user.Email && usr.Password == user.Password).FirstOrDefault<User>());
             }
             catch (Exception)
             {
@@ -29,12 +30,12 @@ namespace API_Service.RepositoryLayer.Repository
             return userDetail;
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public async Task<IList<User>> GetAllUsers()
         {
             List<User> userList = null;
             try
             {
-                userList = MockData.userList.ToList<User>();
+                userList = await Task.Run(()=>MockData.userList.ToList<User>());
             }
             catch (Exception)
             {
@@ -43,12 +44,12 @@ namespace API_Service.RepositoryLayer.Repository
             return userList;
         }
 
-        public TokenResponse GetTokenForValidation(User user)
+        public async Task<TokenResponse> GetTokenForValidation(User user)
         {
             TokenResponse response = new TokenResponse { Token = string.Empty };
             try
             {
-                User validUser = new DataRepository().CheckCredential(user);
+                User validUser = await Task.Run(()=>new DataRepository().CheckCredential(user));
                 if (validUser != null)
                 {
                     response.Token = JwtManager.GenerateToken(validUser);
@@ -61,12 +62,12 @@ namespace API_Service.RepositoryLayer.Repository
             return response;
         }
 
-        public User GetUserById(string userId)
+        public async Task<User> GetUserById(string userId)
         {
             User userDetail = new User();
             try
             {
-                userDetail = MockData.userList.Where(usr => usr.Id == Guid.Parse(userId)).FirstOrDefault<User>();
+                userDetail = await Task.Run(() => MockData.userList.Where(usr => usr.Id == Guid.Parse(userId)).FirstOrDefault<User>());
             }
             catch (Exception)
             {
@@ -75,14 +76,28 @@ namespace API_Service.RepositoryLayer.Repository
             return userDetail;
         }
 
-        public bool RegisterUser(User user)
+        public async Task<List<string>> GetEmailList()
+        {
+            List<string> emailList = new List<string>();
+            try
+            {
+                emailList = await Task.Run(()=>MockData.userList.Select(usr => usr.Email).ToList<string>());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return emailList;
+        }
+
+        public async Task<bool> RegisterUser(User user)
         {
             bool status = false;
             try
             {
                 user.Id = Guid.NewGuid();           
                 user.RegisteredTime = DateTime.Now;
-                MockData.userList.Add(user);
+                await Task.Run(()=>MockData.userList.Add(user));
                 status = true;
             }
             catch (Exception)

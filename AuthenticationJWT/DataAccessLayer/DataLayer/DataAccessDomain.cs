@@ -80,5 +80,27 @@ namespace DataAccessLayer.DataLayer
             }
             return user;
         }
+        public async Task<bool> IsEmailExist(string email)
+        {
+            bool responseStatus = false;
+            try
+            {
+                HttpResponseMessage response = await Task.Run(() => _client.GetAsync(_client.BaseAddress + "getemails").Result);
+                if (response.IsSuccessStatusCode)
+                {
+                    IList<string> emailList = JsonConvert.DeserializeObject<IList<string>>(response.Content.ReadAsStringAsync().Result);
+                    if (emailList.Contains(email))
+                    {
+                        responseStatus = true;
+                    }
+                    emailList.Clear();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return responseStatus;
+        }
     }
 }

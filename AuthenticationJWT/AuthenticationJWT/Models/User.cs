@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AuthenticationJWT.Models
 {
@@ -20,7 +21,7 @@ namespace AuthenticationJWT.Models
         [Required(ErrorMessage = "Please enter your email-id")]
         [StringLength(30, ErrorMessage = "Your email should be of charcaters less than 30")]
         [RegularExpression(@"^[a-z][\w.]+@[a-z]+\.[a-z]{3}$", ErrorMessage = "Please enter a valid email-id.")]
-        //[Remote(action: "IsEmailInUse", controller: "Login")]
+        [Remote("IsEmailInUse", "Login", ErrorMessage = "This email is already in use!")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 

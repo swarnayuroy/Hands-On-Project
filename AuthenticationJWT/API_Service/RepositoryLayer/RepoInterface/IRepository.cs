@@ -9,10 +9,11 @@ namespace API_Service.RepositoryLayer.RepoInterface
 {
     public interface IRepository
     {
-        IEnumerable<User> GetAllUsers();
-        User CheckCredential(User user);
-        User GetUserById(string userId);
-        TokenResponse GetTokenForValidation(User user);
-        bool RegisterUser(User user);
+        Task<IList<User>> GetAllUsers();
+        Task<User> CheckCredential(User user);
+        Task<User> GetUserById(string userId);
+        Task<TokenResponse> GetTokenForValidation(User user);
+        Task<bool> RegisterUser(User user);
+        Task<List<string>> GetEmailList();
     }
 }
