@@ -30,7 +30,7 @@ namespace AuthenticationJWT.Controllers
         #endregion
 
         public async Task<ActionResult> Index()
-        {            
+        {
             try
             {
                 string token = Request.Cookies["userToken"]?.Value;
