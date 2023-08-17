@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,11 +8,22 @@ namespace AuthenticationJWT.Models
 {
     public class UserDetails: User
     {
+        [Required(ErrorMessage = "Please enter your gender")]
         public string Gender { get; set; }
+
+        [Required(ErrorMessage = "Please enter your date of birth")]
         private DateTime DateOfBirth { get; set; }
+
+        [Required(ErrorMessage = "Please enter your contact numbber")]
         private string ContactNo { get; set; }
-        public string City { get; set; }
+
+        [Required(ErrorMessage = "Please enter your gender")]
         public string State { get; set; }
+
+        [Required(ErrorMessage = "Please enter your city")]
+        public string City { get; set; }        
+
+        [Required(ErrorMessage = "Please enter your gender")]
         public string Zip { get; set; }
         public DateTime RegisteredTime { get; set; }
     }

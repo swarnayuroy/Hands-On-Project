@@ -8,8 +8,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="~/Content/user-pagelayout.css" />
-    <link rel="stylesheet" href="~/Content/header-footer-style.css" />
+    <link rel="stylesheet" href="~/Content/shared/pagelayout.css" />
+    <link rel="stylesheet" href="~/Content/user-layout/header-footer-style.css" />
+    <link rel="stylesheet" href="~/Content/user-layout/edit-style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="~/Scripts/userhome-scripts.js"></script>
     <title>View Profile</title>
@@ -17,8 +18,16 @@
 <body>
     @Html.Partial("_Header", Model)
     <div class="content">
-        <b>Name: </b><p>@Model.Name</p>
-        <b>Email: </b><p>@Model.Email</p>
+        <table>
+            <tr>
+                <td><b>Name: </b></td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td><b>Email: </b></td>
+                <td>@Model.Email</td>
+            </tr>
+        </table>
     </div>
     @Html.Partial("_Footer")
 </body>
