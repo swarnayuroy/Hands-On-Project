@@ -18,40 +18,109 @@
 <body>
     @Html.Partial("_Header", Model)
     <div class="content">
-        <table>
-            <tr>
-                <th>Name:</th>
-                <td>@Model.Name</td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td>@Model.Email</td>
-            </tr>
-            <tr>
-                <th>Gender:</th>
-                <td>@Model.Gender</td>
-            </tr>
-            <tr>
-                <th>Date Of Birth:</th>
-                <td>@Model.DateOfBirth</td>
-            </tr>
-            <tr>
-                <th>Contact No:</th>
-                <td>@Model.ContactNo</td>
-            </tr>
-            <tr>
-                <th>State:</th>
-                <td>@Model.State</td>
-            </tr>
-            <tr>
-                <th>City:</th>
-                <td>@Model.City</td>
-            </tr>
-            <tr>
-                <th>Zip:</th>
-                <td>@Model.Zip</td>
-            </tr>
-        </table>
+        <form action="/Home/Edit" method="post" class="sign-up-form">
+            <table>
+                <tr>
+                    <th>Name:</th>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <th>Gender:</th>
+                    @if (string.IsNullOrEmpty(Model.Gender))
+                    {
+                        <td class="user-gender">
+                            <div class="option1">
+                                Male
+                                @Html.RadioButtonFor(x => x.Gender, "Male")
+                            </div>
+                            <div class="option2">
+                                Female
+                                @Html.RadioButtonFor(x => x.Gender, "Female")
+                            </div>                            
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@Model.Gender</td>
+                    }
+                </tr>
+                <tr>
+                    <th>Date Of Birth:</th>
+                    @if (!Model.DateOfBirth.HasValue)
+                    {
+                        <td class="details">
+                            @Html.TextBoxFor(x => x.DateOfBirth, new { type = "date" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@Model.DateOfBirth</td>
+                    }
+                </tr>
+                <tr>
+                    <th>Contact No:</th>
+                    @if (string.IsNullOrEmpty(Model.ContactNo))
+                    {
+                        <td class="details">
+                            @Html.TextBoxFor(x => x.ContactNo, new { autocomplete = "off" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@Model.ContactNo</td>
+                    }
+                </tr>
+                <tr>
+                    <th>State:</th>
+                    @if (string.IsNullOrEmpty(Model.State))
+                    {
+                        <td class="details">
+                            @Html.TextBoxFor(x => x.State, new { autocomplete = "off" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@Model.State</td>
+                    }
+                </tr>
+                <tr>
+                    <th>City:</th>
+                    @if (string.IsNullOrEmpty(Model.City))
+                    {
+                        <td class="details">
+                            @Html.TextBoxFor(x => x.City, new { autocomplete = "off" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@Model.City</td>
+                    }
+                </tr>
+                <tr>
+                    <th>Zip:</th>
+                    @if (string.IsNullOrEmpty(Model.Zip))
+                    {
+                        <td class="details">
+                            @Html.TextBoxFor(x => x.Zip, new { autocomplete = "off" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@Model.Zip</td>
+                    }
+                </tr>
+                <tr>
+                    <td colspan="2" class="save-action">
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Save" class="button" />
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
     @Html.Partial("_Footer")
 </body>
