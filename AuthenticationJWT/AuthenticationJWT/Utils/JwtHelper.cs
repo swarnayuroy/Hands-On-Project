@@ -17,19 +17,25 @@ namespace AuthenticationJWT.Utils
             ClaimsPrincipal principal = null;
             var tokenHandler = new JwtSecurityTokenHandler();
             var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
-
-            if (jwtToken != null)
+            try
             {
-                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings["JwtKey"]));
-
-                var validationParameters = new TokenValidationParameters()
+                if (jwtToken != null)
                 {
-                    RequireExpirationTime = true,
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    IssuerSigningKey = securityKey
-                };
-                principal = tokenHandler.ValidateToken(token, validationParameters, out _);                
+                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings["JwtKey"]));
+
+                    var validationParameters = new TokenValidationParameters()
+                    {
+                        RequireExpirationTime = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        IssuerSigningKey = securityKey
+                    };
+                    principal = tokenHandler.ValidateToken(token, validationParameters, out _);
+                }                
+            }
+            catch (Exception)
+            {
+                throw;
             }
             return principal;
         }

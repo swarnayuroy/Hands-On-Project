@@ -14,7 +14,7 @@ namespace AuthenticationJWT.Models
         [Required(ErrorMessage = "Please enter your date of birth")]
         public DateTime? DateOfBirth { get; set; }
 
-        [Required(ErrorMessage = "Please enter your contact numbber")]
+        [Required(ErrorMessage = "Please enter your contact number")]
         public string ContactNo { get; set; }
 
         [Required(ErrorMessage = "Please enter your gender")]

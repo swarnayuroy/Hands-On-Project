@@ -54,3 +54,20 @@
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
    at AuthenticationJWT.Controllers.HomeController.<Index>d__4.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
+2023-08-26 20:06:07,283 ERROR: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '26-08-2023 14:30:36', Current time (UTC): '26-08-2023 14:35:48'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at AuthenticationJWT.Utils.JwtHelper.GetClaimsPrincipalFromToken(String token) in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Utils\JwtHelper.cs:line 32
+   at AuthenticationJWT.Controllers.HomeController.<>c__DisplayClass4_0.<Index>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at AuthenticationJWT.Controllers.HomeController.<Index>d__4.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39

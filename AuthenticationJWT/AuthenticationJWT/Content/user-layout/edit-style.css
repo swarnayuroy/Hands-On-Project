@@ -25,6 +25,12 @@ th{
     width: 65%;
 }
 
+.display input {
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
 th, td {
     padding: 15px;
 }
@@ -53,4 +59,10 @@ th, td {
 
 .button:hover{
     background: blue;
+}
+
+@media screen and (max-width: 500px) {
+    .user-gender {
+        width: auto;
+    }
 }

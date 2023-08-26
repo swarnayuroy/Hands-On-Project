@@ -92,5 +92,23 @@ namespace AuthenticationJWT.Controllers
             }
             return RedirectToAction("Logout", "Home");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUser(UserDetails userDetails)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("EditUser", userDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+            }
+            return View("EditUser");
+        }
     }
 }
