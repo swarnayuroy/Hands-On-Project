@@ -19,7 +19,7 @@ th{
     text-align: end;
 }
 
-.user-gender {
+.user-gender .options {
     display: flex;
     justify-content: space-between;
     width: 65%;
@@ -61,8 +61,14 @@ th, td {
     background: blue;
 }
 
+.field-validation-error {
+    position: absolute;
+    color: red;
+    font-size: 12px;
+}
+
 @media screen and (max-width: 500px) {
-    .user-gender {
+    .user-gender .options {
         width: auto;
     }
 }

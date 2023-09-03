@@ -54,18 +54,7 @@ namespace AuthenticationJWT.Controllers
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");                
             }
             return RedirectToAction("SignIn", "Login");
-        }
-        public async Task<ActionResult> Logout()
-        {
-            HttpCookie cookie = Request.Cookies["userToken"];
-            if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddMinutes(-1);
-                Response.Cookies.Add(cookie);
-                await Task.Run(() => Request.Cookies.Remove("userToken"));
-            }            
-            return RedirectToAction("SignIn", "Login");
-        }
+        }        
         
         [HttpGet]
         public async Task<ActionResult> EditUser(Guid id)
@@ -110,5 +99,18 @@ namespace AuthenticationJWT.Controllers
             }
             return View("EditUser");
         }
+
+        public async Task<ActionResult> Logout()
+        {
+            HttpCookie cookie = Request.Cookies["userToken"];
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddMinutes(-1);
+                Response.Cookies.Add(cookie);
+                await Task.Run(() => Request.Cookies.Remove("userToken"));
+            }
+            return RedirectToAction("SignIn", "Login");
+        }
+
     }
 }

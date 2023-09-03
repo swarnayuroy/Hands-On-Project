@@ -1,73 +1,36 @@
-2023-08-13 20:44:38,962 ERROR: One or more errors occurred.
-   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
-   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
-   at System.Threading.Tasks.Task`1.get_Result()
-   at DataAccessLayer.DataLayer.DataAccessDomain.<>c__DisplayClass5_0.<GetUserDetail>b__0() in F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\DataLayer\DataAccessDomain.cs:line 72
+2023-09-03 10:48:17,816 ERROR: Object reference not set to an instance of an object.
+   at AuthenticationJWT.Controllers.LoginController.<>c__DisplayClass7_0.<IsEmailInUse>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119
    at System.Threading.Tasks.Task`1.InnerInvoke()
    at System.Threading.Tasks.Task.Execute()
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
-   at DataAccessLayer.DataLayer.DataAccessDomain.<GetUserDetail>d__5.MoveNext() in F:\Project\MyProject\AuthenticationJWT\DataAccessLayer\DataLayer\DataAccessDomain.cs:line 85
---- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
-   at ServiceLayer.ServiceDomain.Service.<GetUserDetail>d__4.MoveNext() in F:\Project\MyProject\AuthenticationJWT\ServiceLayer\ServiceDomain\Service.cs:line 55
---- End of stack trace from previous location where exception was thrown ---
-   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
-   at AuthenticationJWT.Controllers.HomeController.<EditUser>d__6.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 79
-2023-08-26 11:42:35,871 ERROR: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '26-08-2023 06:06:36', Current time (UTC): '26-08-2023 06:12:34'.
-   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
---- End of stack trace from previous location where exception was thrown ---
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
-   at AuthenticationJWT.Utils.JwtHelper.GetClaimsPrincipalFromToken(String token) in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Utils\JwtHelper.cs:line 32
-   at AuthenticationJWT.Controllers.HomeController.<>c__DisplayClass4_0.<Index>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
+   at AuthenticationJWT.Controllers.LoginController.<IsEmailInUse>d__7.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119
+2023-09-03 10:53:30,015 ERROR: Object reference not set to an instance of an object.
+   at AuthenticationJWT.Controllers.LoginController.<>c__DisplayClass7_0.<IsEmailInUse>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119
    at System.Threading.Tasks.Task`1.InnerInvoke()
    at System.Threading.Tasks.Task.Execute()
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
-   at AuthenticationJWT.Controllers.HomeController.<Index>d__4.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
-2023-08-26 11:42:35,871 ERROR: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '26-08-2023 06:06:36', Current time (UTC): '26-08-2023 06:11:59'.
-   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
---- End of stack trace from previous location where exception was thrown ---
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
-   at AuthenticationJWT.Utils.JwtHelper.GetClaimsPrincipalFromToken(String token) in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Utils\JwtHelper.cs:line 32
-   at AuthenticationJWT.Controllers.HomeController.<>c__DisplayClass4_0.<Index>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
+   at AuthenticationJWT.Controllers.LoginController.<IsEmailInUse>d__7.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119
+2023-09-03 10:57:52,228 ERROR: Object reference not set to an instance of an object.
+   at AuthenticationJWT.Controllers.LoginController.<>c__DisplayClass7_0.<IsEmailInUse>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119
    at System.Threading.Tasks.Task`1.InnerInvoke()
    at System.Threading.Tasks.Task.Execute()
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
-   at AuthenticationJWT.Controllers.HomeController.<Index>d__4.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
-2023-08-26 20:06:07,283 ERROR: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '26-08-2023 14:30:36', Current time (UTC): '26-08-2023 14:35:48'.
-   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
---- End of stack trace from previous location where exception was thrown ---
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
-   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
-   at AuthenticationJWT.Utils.JwtHelper.GetClaimsPrincipalFromToken(String token) in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Utils\JwtHelper.cs:line 32
-   at AuthenticationJWT.Controllers.HomeController.<>c__DisplayClass4_0.<Index>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
+   at AuthenticationJWT.Controllers.LoginController.<IsEmailInUse>d__7.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119
+2023-09-03 11:00:37,619 ERROR: Object reference not set to an instance of an object.
+   at AuthenticationJWT.Controllers.LoginController.<>c__DisplayClass7_0.<IsEmailInUse>b__0() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119
    at System.Threading.Tasks.Task`1.InnerInvoke()
    at System.Threading.Tasks.Task.Execute()
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
-   at AuthenticationJWT.Controllers.HomeController.<Index>d__4.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\HomeController.cs:line 39
+   at AuthenticationJWT.Controllers.LoginController.<IsEmailInUse>d__7.MoveNext() in F:\Project\MyProject\AuthenticationJWT\AuthenticationJWT\Controllers\LoginController.cs:line 119

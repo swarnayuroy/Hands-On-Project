@@ -116,8 +116,11 @@ namespace AuthenticationJWT.Controllers
         {
             try
             {
-                bool isEmailExist = await Task.Run(() => _service.IsEmailExist(newUser.Register.Email));
-                return Json(!isEmailExist, JsonRequestBehavior.AllowGet);
+                if (newUser.Register != null)
+                {
+                    bool isEmailExist = await Task.Run(() => _service.IsEmailExist(newUser.Register.Email));
+                    return Json(!isEmailExist, JsonRequestBehavior.AllowGet);
+                }                
             }
             catch (Exception ex)
             {
