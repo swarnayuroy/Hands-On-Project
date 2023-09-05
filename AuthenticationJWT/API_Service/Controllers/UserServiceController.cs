@@ -65,6 +65,29 @@ namespace API_Service.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.NotFound, "User not found!");
         }
+
+        [HttpPut]
+        [Route("api/edituser")]
+        public async Task<HttpResponseMessage> EditUser(User userDetails)
+        {
+            HttpResponseMessage response = null;
+            try
+            {
+                bool status = await Task.Run(() => _repo.EditUserDetails(userDetails));
+                if (status)
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.OK);
+                    return response;
+                }
+                response = new HttpResponseMessage(HttpStatusCode.NotModified);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            }            
+            return response;
+        }
         #endregion
     }
 }

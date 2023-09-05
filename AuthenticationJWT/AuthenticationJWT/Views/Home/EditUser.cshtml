@@ -22,7 +22,8 @@
     @Html.Partial("_Header", Model)
     <div class="content">
         <form action="/Home/EditUser" method="post" class="edit-user-form">
-            @Html.HiddenFor(x => x.Id)       
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.Password)
             <table>
                 <tr>
                     <th>Name:</th>
@@ -45,7 +46,7 @@
                                 <div>
                                     Female
                                     @Html.RadioButtonFor(x => x.Gender, "Female")
-                                </div>                                
+                                </div>
                             </div>
                             <div>
                                 @Html.ValidationMessageFor(x => x.Gender)
@@ -59,7 +60,7 @@
                 </tr>
                 <tr>
                     <th>Date Of Birth:</th>
-                    @if (!Model.DateOfBirth.HasValue)
+                    @if (Model.DateOfBirth.ToString() == "01-01-0001 00:00:00")
                     {
                         <td class="details">
                             <div>
@@ -72,7 +73,7 @@
                     }
                     else
                     {
-                        <td>@Html.DisplayFor(x => x.DateOfBirth)</td>
+                        <td>@Html.DisplayFor(x => x.DateOfBirth.ToString().Split(' ')[0])</td>
                     }
                 </tr>
                 <tr>
@@ -158,5 +159,13 @@
         </form>
     </div>
     @Html.Partial("_Footer")
+    @if (ViewBag.Error != null)
+    {
+        <script type="text/javascript">
+                        window.onload = function () {
+                            alert("@ViewBag.Error");
+                        };
+        </script>
+    }
 </body>
 </html>

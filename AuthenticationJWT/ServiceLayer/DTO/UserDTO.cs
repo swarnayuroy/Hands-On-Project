@@ -15,8 +15,8 @@ namespace ServiceLayer.DTO
     public class UserDetailsDTO : UserDTO
     {
         public string Gender { get; set; }
-        private DateTime DateOfBirth { get; set; }
-        private string ContactNo { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string ContactNo { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }

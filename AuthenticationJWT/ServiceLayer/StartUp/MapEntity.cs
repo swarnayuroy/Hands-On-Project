@@ -11,6 +11,7 @@ namespace ServiceLayer.StartUp
     {
         User GetUserEntity(UserDTO userDTO);
         UserDetailsDTO GetUserDetail(User user);
+        User GetUserDetailsEntity(UserDetailsDTO userDetailsDTO);
     }
     public class MapEntity : IMap
     {
@@ -18,6 +19,12 @@ namespace ServiceLayer.StartUp
         {
             Mapper.CreateMap<UserDTO, User>();
             User user = Mapper.Map<UserDTO, User>(userDTO);
+            return user;
+        }
+        public User GetUserDetailsEntity(UserDetailsDTO userDetailsDTO)
+        {
+            Mapper.CreateMap<UserDetailsDTO, User>();
+            User user = Mapper.Map<UserDetailsDTO, User>(userDetailsDTO);
             return user;
         }
         public UserDetailsDTO GetUserDetail(User user)

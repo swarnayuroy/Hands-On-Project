@@ -14,8 +14,8 @@ namespace API_Service.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Gender { get; set; }
-        private DateTime DateOfBirth { get; set; }
-        private string ContactNo { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string ContactNo { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }

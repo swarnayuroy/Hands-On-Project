@@ -12,6 +12,7 @@ namespace AuthenticationJWT.Utils
     {
         User GetUserCredential(LoginDetails credential);
         UserDetails GetUserDetails(UserDetailsDTO userDetail);
+        UserDetailsDTO GetUserDetailsDTO(UserDetails userDetail);
         UserDTO GetUserDTO(User usrCred);
     }
     public class MapEntity: IMap
@@ -27,6 +28,13 @@ namespace AuthenticationJWT.Utils
         {
             Mapper.CreateMap<UserDetailsDTO, UserDetails>();
             UserDetails user = Mapper.Map<UserDetailsDTO, UserDetails>(userDetail);
+            return user;
+        }
+
+        public UserDetailsDTO GetUserDetailsDTO(UserDetails userDetail)
+        {
+            Mapper.CreateMap<UserDetails, UserDetailsDTO>();
+            UserDetailsDTO user = Mapper.Map<UserDetails, UserDetailsDTO>(userDetail);
             return user;
         }
 

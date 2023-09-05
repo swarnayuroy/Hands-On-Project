@@ -12,7 +12,7 @@ namespace AuthenticationJWT.Models
         public string Gender { get; set; }
 
         [Required(ErrorMessage = "Please enter your date of birth")]
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please enter your contact number")]
         public string ContactNo { get; set; }

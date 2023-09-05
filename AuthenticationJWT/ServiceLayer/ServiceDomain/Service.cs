@@ -85,6 +85,20 @@ namespace ServiceLayer.ServiceDomain
             }
             return status;
         }
+        public async Task<bool> EditUserDetails(string token, UserDetailsDTO userDetailsDTO)
+        {
+            bool status = false;
+            try
+            {
+                User user = _mapper.GetUserDetailsEntity(userDetailsDTO);
+                status = await Task.Run(() => _dataLayer.EditUserDetails(token, user));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return status;
+        }
         #endregion
     }
 }

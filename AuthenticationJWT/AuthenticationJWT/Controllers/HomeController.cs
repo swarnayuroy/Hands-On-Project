@@ -78,13 +78,14 @@ namespace AuthenticationJWT.Controllers
             catch (Exception ex)
             {
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                ViewBag.Error = $"We encountered some problem while fetching your details. Please try again later.";
             }
             return RedirectToAction("Logout", "Home");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUser(UserDetails userDetails)
+        public async Task<ActionResult> EditUser(UserDetails userDetails)
         {
             try
             {
@@ -92,12 +93,23 @@ namespace AuthenticationJWT.Controllers
                 {
                     return View("EditUser", userDetails);
                 }
+                string token = Request.Cookies["userToken"]?.Value;
+                if (!string.IsNullOrEmpty(token))
+                {
+                    UserDetailsDTO user = _mapper.GetUserDetailsDTO(userDetails);
+                    bool isUserDetailSaved = await Task.Run(() => _service.EditUserDetails(token, user));
+                    if (isUserDetailSaved)
+                    {
+                        return RedirectToAction("EditUser", new { id = userDetails.Id });
+                    }
+                }
             }
             catch (Exception ex)
             {
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                ViewBag.Error = $"We encountered some problem while saving your details. Please try again later.";
             }
-            return View("EditUser");
+            return RedirectToAction("Logout", "Home");
         }
 
         public async Task<ActionResult> Logout()

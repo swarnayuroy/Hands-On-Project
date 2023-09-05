@@ -29,7 +29,6 @@ namespace API_Service.RepositoryLayer.Repository
             }
             return userDetail;
         }
-
         public async Task<IList<User>> GetAllUsers()
         {
             List<User> userList = null;
@@ -43,7 +42,6 @@ namespace API_Service.RepositoryLayer.Repository
             }
             return userList;
         }
-
         public async Task<TokenResponse> GetTokenForValidation(User user)
         {
             TokenResponse response = new TokenResponse { Token = string.Empty };
@@ -61,7 +59,6 @@ namespace API_Service.RepositoryLayer.Repository
             }
             return response;
         }
-
         public async Task<User> GetUserById(string userId)
         {
             User userDetail = new User();
@@ -75,7 +72,6 @@ namespace API_Service.RepositoryLayer.Repository
             }
             return userDetail;
         }
-
         public async Task<List<string>> GetEmailList()
         {
             List<string> emailList = new List<string>();
@@ -89,7 +85,6 @@ namespace API_Service.RepositoryLayer.Repository
             }
             return emailList;
         }
-
         public async Task<bool> RegisterUser(User user)
         {
             bool status = false;
@@ -98,6 +93,34 @@ namespace API_Service.RepositoryLayer.Repository
                 user.Id = Guid.NewGuid();           
                 user.RegisteredTime = DateTime.Now;
                 await Task.Run(()=>MockData.userList.Add(user));
+                status = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return status;
+        }
+        public async Task<bool> EditUserDetails(User userDetails)
+        {
+            bool status = false;
+            try
+            {
+                var userList = await Task.Run(() => MockData.userList);
+                foreach (User user in userList)
+                {
+                    if (user.Id == userDetails.Id)
+                    {
+                        user.Gender = userDetails.Gender;
+                        user.DateOfBirth = userDetails.DateOfBirth;
+                        user.ContactNo = userDetails.ContactNo;
+                        user.State = userDetails.State;
+                        user.City = userDetails.City;
+                        user.Zip = userDetails.Zip;
+                        break;
+                    }
+                }
+                MockData.userList = userList;
                 status = true;
             }
             catch (Exception)
