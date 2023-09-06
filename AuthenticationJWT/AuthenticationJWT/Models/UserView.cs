@@ -7,11 +7,11 @@ namespace AuthenticationJWT.Models
 {
     public class UserView
     {
-        private bool _isEditEnabaled;
+        private bool _isEditEnabled;
         public bool IsEditEnabled
         {
-            get { return _isEditEnabaled; }
-            set { _isEditEnabaled = value; }
+            get { return _isEditEnabled; }
+            set { _isEditEnabled = value; }
         }
         public UserDetails User { get; set; }
     }
