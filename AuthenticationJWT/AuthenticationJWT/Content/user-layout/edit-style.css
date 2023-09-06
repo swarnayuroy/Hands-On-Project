@@ -15,7 +15,7 @@ table {
     width: 100%;
 }
 
-th{
+th {
     text-align: end;
 }
 
@@ -42,8 +42,23 @@ th, td {
     padding: 3px;
 }
 
-.save-action{
+.save-action, .edit-action {
     text-align: center
+}
+
+.save-action a {
+    color: black;
+    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid;
+}
+
+.edit-action a {
+    color: white;
+    border-radius: 5px;
+    background: darkslateblue;
+    padding: 8px;
+    border: 1px solid;
 }
 
 .button {
@@ -53,12 +68,16 @@ th, td {
     background: darkslateblue;
     color: white;
     border-radius: 5px;
-    outline: none;    
+    outline: none;
     cursor: pointer;
 }
 
-.button:hover{
+.button:hover, .edit-action a:hover {
     background: blue;
+}
+
+.save-action a:hover {
+    background: #B6B6B4;
 }
 
 .field-validation-error {
