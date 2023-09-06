@@ -9,7 +9,7 @@
                 <i class="fa fa-caret-down fa-lg" aria-hidden="true" id="dropdown-icon" onclick="setSubMenuState()"></i>
             </h3>
             <div class="sub-menu" id="sub-menu">
-                <a href="/Home/EditUser/@Model.Id" class="edit-profile">
+                <a href="/Home/ViewProfile?id=@Model.Id&isEditEnabled=false" class="edit-profile">
                     <i class="fa fa-user fa-lg" aria-hidden="true"></i>
                     <p>View Profile</p>
                 </a>

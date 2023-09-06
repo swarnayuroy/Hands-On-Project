@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace AuthenticationJWT.Models
-{
+{    
     public class UserDetails: User
     {
         [Required(ErrorMessage = "Please select your gender")]

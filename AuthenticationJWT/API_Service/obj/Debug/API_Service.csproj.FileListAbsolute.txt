@@ -115,4 +115,3 @@ F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.CopyComplete
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.dll
 F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.pdb
-F:\Project\MyProject\AuthenticationJWT\API_Service\obj\Debug\API_Service.csproj.AssemblyReference.cache

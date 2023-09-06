@@ -54,10 +54,39 @@ namespace AuthenticationJWT.Controllers
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");                
             }
             return RedirectToAction("SignIn", "Login");
-        }        
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditUser(UserView viewDetails)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("ViewProfile", viewDetails);
+                }
+                string token = Request.Cookies["userToken"]?.Value;
+                if (!string.IsNullOrEmpty(token))
+                {                  
+                    UserDetailsDTO user = _mapper.GetUserDetailsDTO(viewDetails.User);
+                    bool isUserDetailSaved = await Task.Run(() => _service.EditUserDetails(token, user));
+                    if (isUserDetailSaved)
+                    {
+                        return RedirectToAction("ViewProfile", new { id = viewDetails.User.Id, isEditEnabled = false});
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                ViewBag.Error = $"We encountered some problem while saving your details. Please try again later.";
+            }
+            return RedirectToAction("Logout", "Home");
+        }
         
         [HttpGet]
-        public async Task<ActionResult> EditUser(Guid id)
+        public async Task<ActionResult> ViewProfile(Guid id, bool isEditEnabled)
         {
             try
             {
@@ -69,11 +98,15 @@ namespace AuthenticationJWT.Controllers
                         UserDetailsDTO user = await Task.Run(() => _service.GetUserDetail(token, id));
                         if (user != null)
                         {
-                            UserDetails userDetail = _mapper.GetUserDetails(user);
-                            return View(userDetail);
+                            UserView view = new UserView 
+                            {
+                                User = _mapper.GetUserDetails(user),
+                                IsEditEnabled = isEditEnabled
+                            };
+                            return View(view);
                         }
                     }
-                }                                
+                }
             }
             catch (Exception ex)
             {
@@ -82,36 +115,6 @@ namespace AuthenticationJWT.Controllers
             }
             return RedirectToAction("Logout", "Home");
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUser(UserDetails userDetails)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return View("EditUser", userDetails);
-                }
-                string token = Request.Cookies["userToken"]?.Value;
-                if (!string.IsNullOrEmpty(token))
-                {
-                    UserDetailsDTO user = _mapper.GetUserDetailsDTO(userDetails);
-                    bool isUserDetailSaved = await Task.Run(() => _service.EditUserDetails(token, user));
-                    if (isUserDetailSaved)
-                    {
-                        return RedirectToAction("EditUser", new { id = userDetails.Id });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
-                ViewBag.Error = $"We encountered some problem while saving your details. Please try again later.";
-            }
-            return RedirectToAction("Logout", "Home");
-        }
-
         public async Task<ActionResult> Logout()
         {
             HttpCookie cookie = Request.Cookies["userToken"];
