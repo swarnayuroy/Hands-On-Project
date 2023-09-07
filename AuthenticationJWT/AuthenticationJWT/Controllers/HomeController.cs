@@ -86,7 +86,7 @@ namespace AuthenticationJWT.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult> ViewProfile(Guid id, bool isEditEnabled)
+        public async Task<ActionResult> ViewProfile(Guid id, bool isEditEnabled = false)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace AuthenticationJWT.Controllers
                         UserDetailsDTO user = await Task.Run(() => _service.GetUserDetail(token, id));
                         if (user != null)
                         {
-                            UserView view = new UserView 
+                            UserView view = new UserView
                             {
                                 User = _mapper.GetUserDetails(user),
                                 IsEditEnabled = isEditEnabled
