@@ -39,7 +39,7 @@ namespace AuthenticationJWT.Controllers
                     ClaimsPrincipal claimsPrincipal = await Task.Run(() => JwtHelper.GetClaimsPrincipalFromToken(token));
                     if (claimsPrincipal != null)
                     {
-                        User user = new User
+                        User user = new User()
                         {
                             Id = Guid.Parse(claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value),
                             Name = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value,
@@ -115,6 +115,57 @@ namespace AuthenticationJWT.Controllers
             }
             return RedirectToAction("Logout", "Home");
         }
+
+        [HttpGet]
+        public async Task<ActionResult> ChangePassword(Guid id)
+        {
+            try
+            {
+                if (id != Guid.Empty)
+                {
+                    string token = Request.Cookies["userToken"]?.Value;
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        UserDetailsDTO userDetails = await Task.Run(() => _service.GetUserDetail(token, id, true));
+                        User user = _mapper.GetOnlyUserCred(userDetails);
+                        AlterPassword alterPassword = new AlterPassword()
+                        {
+                            Id = user.Id,
+                            Name = user.Name,
+                            Email = user.Email,
+                            Password = user.Password
+                        };
+                        return View(alterPassword);
+                    }
+                }      
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                ViewBag.Error = $"We encountered some problem while fetching your details. Please try again later.";
+            }
+            return RedirectToAction("Logout", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(AlterPassword userDetails)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("ChangePassword", userDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                ViewBag.Error = $"We encountered some problem while saving your new password. Please try again later.";
+            }
+            return RedirectToAction("Logout", "Home");
+        }
+
         public async Task<ActionResult> Logout()
         {
             HttpCookie cookie = Request.Cookies["userToken"];

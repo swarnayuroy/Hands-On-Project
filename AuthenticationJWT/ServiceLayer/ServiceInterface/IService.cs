@@ -12,6 +12,6 @@ namespace ServiceLayer.ServiceInterface
         Task<string> ConfirmValidCredential(UserDTO user);
         Task<bool> RegisterNewUser(UserDTO user);
         Task<bool> EditUserDetails(string token, UserDetailsDTO userDTO);
-        Task<UserDetailsDTO> GetUserDetail(string token, Guid userId);
+        Task<UserDetailsDTO> GetUserDetail(string token, Guid userId, bool isOnlyCredential=false);
     }
 }

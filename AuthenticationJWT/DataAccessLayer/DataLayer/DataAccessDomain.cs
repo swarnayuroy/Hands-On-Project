@@ -62,23 +62,34 @@ namespace DataAccessLayer.DataLayer
             }
             return tokenResponse.Token;
         }
-        public async Task<User> GetUserDetail(string token, Guid userId)
+        public async Task<User> GetUserDetail(string token, Guid userId, bool isOnlyCredential)
         {
-            User user = null;
+            User userDetail = null;
             try
             {
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 HttpResponseMessage response = await Task.Run(() => _client.GetAsync($"{_client.BaseAddress}/user/{userId}").Result);
                 if (response.IsSuccessStatusCode)
                 {
-                    user = JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
+                    userDetail = JsonConvert.DeserializeObject<User>(response.Content.ReadAsStringAsync().Result);
+                    if (isOnlyCredential)
+                    {
+                        User userCredDetail = new User()
+                        {
+                            Id = userDetail.Id,
+                            Name = userDetail.Name,
+                            Email = userDetail.Email,
+                            Password = userDetail.Password
+                        };
+                        userDetail = userCredDetail;
+                    }
                 }
             }
             catch (Exception)
             {
                 throw;
             }
-            return user;
+            return userDetail;
         }
         public async Task<bool> IsEmailExist(string email)
         {

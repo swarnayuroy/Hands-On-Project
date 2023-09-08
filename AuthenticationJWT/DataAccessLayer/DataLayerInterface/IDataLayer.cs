@@ -12,6 +12,6 @@ namespace DataAccessLayer.DataLayerInterface
         Task<bool> IsEmailExist(string email);
         Task<bool> RegisterUser(User cred);
         Task<bool> EditUserDetails(string token, User user);
-        Task<User> GetUserDetail(string token, Guid userId);
+        Task<User> GetUserDetail(string token, Guid userId, bool isOnlyCredential);
     }
 }

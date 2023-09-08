@@ -39,12 +39,12 @@ namespace ServiceLayer.ServiceDomain
             return token;
         }
 
-        public async Task<UserDetailsDTO> GetUserDetail(string token, Guid userId)
+        public async Task<UserDetailsDTO> GetUserDetail(string token, Guid userId, bool isOnlyCredential=false)
         {
             UserDetailsDTO userDetail = null;
             try
             {
-                User user = await Task.Run(() => _dataLayer.GetUserDetail(token, userId));
+                User user = await Task.Run(() => _dataLayer.GetUserDetail(token, userId, isOnlyCredential));
                 if (user != null)
                 {
                     userDetail = _mapper.GetUserDetail(user);
