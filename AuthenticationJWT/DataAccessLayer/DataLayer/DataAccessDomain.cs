@@ -113,11 +113,16 @@ namespace DataAccessLayer.DataLayer
             }
             return responseStatus;
         }
-        public async Task<bool> EditUserDetails(string token, User user)
+        public async Task<bool> EditUserDetails(string token, User user, bool savePassword)
         {
             bool responseStatus = false;
             try
             {
+                if (!savePassword)
+                {
+                    user.Password = String.Empty;
+                    user.Email = String.Empty;
+                }
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 StringContent usrDetails = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await Task.Run(() => _client.PutAsync(_client.BaseAddress + "edituser", usrDetails).Result);

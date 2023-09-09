@@ -85,13 +85,13 @@ namespace ServiceLayer.ServiceDomain
             }
             return status;
         }
-        public async Task<bool> EditUserDetails(string token, UserDetailsDTO userDetailsDTO)
+        public async Task<bool> EditUserDetails(string token, UserDetailsDTO userDetailsDTO, bool savePassword = false)
         {
             bool status = false;
             try
             {
                 User user = _mapper.GetUserDetailsEntity(userDetailsDTO);
-                status = await Task.Run(() => _dataLayer.EditUserDetails(token, user));
+                status = await Task.Run(() => _dataLayer.EditUserDetails(token, user, savePassword));
             }
             catch (Exception)
             {

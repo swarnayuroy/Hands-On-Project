@@ -142,14 +142,14 @@ namespace AuthenticationJWT.Controllers
             catch (Exception ex)
             {
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");
-                ViewBag.Error = $"We encountered some problem while fetching your details. Please try again later.";
+                ViewBag.Message = $"We encountered some problem while fetching your details. Please try again later.";
             }
             return RedirectToAction("Logout", "Home");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangePassword(AlterPassword userDetails)
+        public async Task<ActionResult> ChangePassword(AlterPassword userDetails)
         {
             try
             {
@@ -157,11 +157,31 @@ namespace AuthenticationJWT.Controllers
                 {
                     return View("ChangePassword", userDetails);
                 }
+                string token = Request.Cookies["userToken"]?.Value;
+                if (!string.IsNullOrEmpty(token))
+                {
+                    UserDetails user = new UserDetails()
+                    {
+                        Id = userDetails.Id,
+                        Name = userDetails.Name,
+                        Password = userDetails.New
+                    };
+                    bool isUserPasswordSaved = await Task.Run(() => _service.EditUserDetails(token, _mapper.GetUserDetailsDTO(user), true));
+                    if (isUserPasswordSaved)
+                    {
+                        ViewBag.Message = "Your password has been changed";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Failed to change your password!\nPlease try again later.";
+                    }
+                    return View(userDetails);
+                }
             }
             catch (Exception ex)
             {
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");
-                ViewBag.Error = $"We encountered some problem while saving your new password. Please try again later.";
+                ViewBag.Message = $"We encountered some problem while saving your new password. Please try again later.";
             }
             return RedirectToAction("Logout", "Home");
         }

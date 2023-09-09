@@ -111,12 +111,21 @@ namespace API_Service.RepositoryLayer.Repository
                 {
                     if (user.Id == userDetails.Id)
                     {
-                        user.Gender = userDetails.Gender;
-                        user.DateOfBirth = userDetails.DateOfBirth;
-                        user.ContactNo = userDetails.ContactNo;
-                        user.State = userDetails.State;
-                        user.City = userDetails.City;
-                        user.Zip = userDetails.Zip;
+                        if (string.IsNullOrEmpty(userDetails.Password) && string.IsNullOrEmpty(userDetails.Email))
+                        {
+                            //Saving user entered details
+                            user.Gender = userDetails.Gender;
+                            user.DateOfBirth = userDetails.DateOfBirth;
+                            user.ContactNo = userDetails.ContactNo;
+                            user.State = userDetails.State;
+                            user.City = userDetails.City;
+                            user.Zip = userDetails.Zip;
+                        }
+                        else
+                        {
+                            //Saving a new password
+                            user.Password = userDetails.Password;
+                        }                        
                         break;
                     }
                 }
