@@ -57,6 +57,18 @@ th, td {
     border: 1px solid;
 }
 
+.delete div {
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 68px;
+    cursor: pointer;
+}
+
+.edit-action{
+    text-align: right;
+}
+
 .edit-action a {
     color: white;
     border-radius: 5px;
@@ -80,7 +92,7 @@ th, td {
     background: blue;
 }
 
-.save-action a:hover {
+.save-action a:hover, .delete div:hover {
     background: #B6B6B4;
 }
 
