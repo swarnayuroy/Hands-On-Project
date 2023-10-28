@@ -77,15 +77,43 @@ namespace API_Service.Controllers
                 if (status)
                 {
                     response = new HttpResponseMessage(HttpStatusCode.OK);
-                    return response;
                 }
-                response = new HttpResponseMessage(HttpStatusCode.NotModified);
+                else
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.NotModified);
+                }
+                
             }
             catch (Exception ex)
             {
                 _logger.Error($"{ex.Message}\n{ex.StackTrace}");
                 response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }            
+            return response;
+        }
+
+        [HttpDelete]
+        [Route("api/deleteuser/{id}")]
+        public async Task<HttpResponseMessage> DeleteUser(string id)
+        {
+            HttpResponseMessage response = null;
+            try
+            {
+                bool status = await Task.Run(() => _repo.DeleteUser(id));
+                if (status)
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.OK);
+                }
+                else
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.NotModified);
+                }                
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            }
             return response;
         }
         #endregion

@@ -137,5 +137,23 @@ namespace DataAccessLayer.DataLayer
             }
             return responseStatus;
         }
+        public async Task<bool> DeleteUserAccount(string token, Guid id)
+        {
+            bool responseStatus = false;
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                HttpResponseMessage response = await Task.Run(() => _client.DeleteAsync($"{_client.BaseAddress}/deleteuser/{id}").Result);
+                if (response.IsSuccessStatusCode)
+                {
+                    responseStatus = true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return responseStatus;
+        }
     }
 }

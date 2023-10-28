@@ -17,5 +17,13 @@
 <body>
     @Html.Partial("_Header", Model)
     @Html.Partial("_Footer")
+    @if (ViewBag.Error != null)
+    {
+        <script type="text/javascript">
+                        window.onload = function () {
+                            alert("@ViewBag.Error");
+                        };
+        </script>
+    }
 </body>
 </html>

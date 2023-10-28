@@ -186,6 +186,28 @@ namespace AuthenticationJWT.Controllers
             return RedirectToAction("Logout", "Home");
         }
 
+        public async Task<ActionResult> DeleteAccount(Guid id)
+        {
+            try
+            {
+                string token = Request.Cookies["userToken"]?.Value;
+                if (!string.IsNullOrEmpty(token))
+                {
+                    bool isUserDeleted = await Task.Run(() => _service.DeleteAccount(token, id));
+                    if (isUserDeleted)
+                    {
+                        return RedirectToAction("Logout", "Home");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                ViewBag.Error = $"We encountered some problem while deleting your account! Please try again later.";
+            }            
+            return RedirectToAction("Index", "Home");
+        }
+
         public async Task<ActionResult> Logout()
         {
             HttpCookie cookie = Request.Cookies["userToken"];

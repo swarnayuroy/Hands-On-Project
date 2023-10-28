@@ -138,5 +138,20 @@ namespace API_Service.RepositoryLayer.Repository
             }
             return status;
         }
+        public async Task<bool> DeleteUser(string id)
+        {
+            bool status = false;
+            try
+            {
+                User user = await GetUserById(id);
+                MockData.userList.Remove(user);
+                status = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return status;
+        }
     }
 }

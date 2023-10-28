@@ -15,6 +15,7 @@ namespace API_Service.RepositoryLayer.RepoInterface
         Task<TokenResponse> GetTokenForValidation(User user);
         Task<bool> RegisterUser(User user);
         Task<bool> EditUserDetails(User userDetails);
+        Task<bool> DeleteUser(string id);
         Task<List<string>> GetEmailList();
     }
 }

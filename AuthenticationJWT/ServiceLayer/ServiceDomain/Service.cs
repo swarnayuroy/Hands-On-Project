@@ -38,7 +38,6 @@ namespace ServiceLayer.ServiceDomain
             }
             return token;
         }
-
         public async Task<UserDetailsDTO> GetUserDetail(string token, Guid userId, bool isOnlyCredential=false)
         {
             UserDetailsDTO userDetail = null;
@@ -56,7 +55,6 @@ namespace ServiceLayer.ServiceDomain
             }
             return userDetail;
         }
-
         public async Task<bool> IsEmailExist(string email)
         {
             bool isEmailExist = false;
@@ -70,7 +68,6 @@ namespace ServiceLayer.ServiceDomain
             }
             return isEmailExist;
         }
-
         public async Task<bool> RegisterNewUser(UserDTO userDTO)
         {
             bool status = false;
@@ -92,6 +89,19 @@ namespace ServiceLayer.ServiceDomain
             {
                 User user = _mapper.GetUserDetailsEntity(userDetailsDTO);
                 status = await Task.Run(() => _dataLayer.EditUserDetails(token, user, savePassword));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return status;
+        }
+        public async Task<bool> DeleteAccount(string token, Guid id)
+        {
+            bool status = false;
+            try
+            {
+                status = await Task.Run(() => _dataLayer.DeleteUserAccount(token, id));
             }
             catch (Exception)
             {
