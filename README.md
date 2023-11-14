@@ -1,0 +1,1 @@
+This project is just a proof of concept for JWT Authentication. The project has a Web API where we validate credential and generate a JWT token which is then shared in the front end project. The same token is used to autheticate user home page and other corresponding operations.
